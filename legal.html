@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal | Baradia Group</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* RESET & CORE */
+        body, html { margin: 0; padding: 0; background-color: #1a1a1a; color: #fff; scroll-behavior: smooth; }
+        body { font-family: 'Arimo', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        
+        /* LAYOUT */
+        .legal-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        /* HEADER */
+        .legal-header {
+            margin-bottom: 6rem;
+            border-left: 3px solid #C2152F;
+            padding-left: 2rem;
+        }
+        
+        .legal-title {
+            font-family: 'Arimo', sans-serif;
+            font-weight: 700;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .legal-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 1rem;
+        }
+
+        /* SECTIONS */
+        .legal-section {
+            margin-bottom: 6rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .legal-section:hover {
+            opacity: 1;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 40px;
+            height: 2px;
+            background: #C2152F;
+        }
+
+        p, li {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1rem;
+        }
+
+        ul { list-style: none; padding: 0; }
+        li::before { content: "—"; color: #C2152F; margin-right: 10px; }
+
+        /* BACK BUTTON */
+        .back-btn {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            text-decoration: none;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: 0.3s;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-btn:hover { color: #C2152F; }
+
+        /* MOBILE */
+        @media(max-width: 768px) {
+            .legal-title { font-size: 2rem; }
+            .legal-header { margin-bottom: 4rem; padding-left: 1.5rem; }
+            .legal-container { padding-top: 6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← Back to Home</a>
+
+    <div class="legal-container">
+        
+        <header class="legal-header">
+            <h1 class="legal-title">Legal & Privacy</h1>
+            <div class="legal-subtitle">Transparency and trust are the foundations of Baradia Group.</div>
+        </header>
+
+        <section id="privacy" class="legal-section">
+            <h2>Privacy Policy</h2>
+            <p><strong>Effective Date:</strong> January 2026</p>
+            <p>Baradia Group respects your privacy. We collect minimal personal data necessary to provide our services and improve user experience.</p>
+            <ul>
+                <li><strong>Data Collection:</strong> We may collect names, emails, and phone numbers solely when voluntarily provided via our contact forms.</li>
+                <li><strong>Usage:</strong> Data is used exclusively for communication and service delivery. We do not sell or trade your personal information.</li>
+                <li><strong>Security:</strong> We implement industry-standard security measures to protect your data.</li>
+            </ul>
+        </section>
+
+        <section id="terms" class="legal-section">
+            <h2>Terms & Conditions</h2>
+            <p>By accessing the Baradia Group website, you agree to comply with these terms.</p>
+            <ul>
+                <li><strong>Intellectual Property:</strong> All content, logos, and imagery on this site are the property of Baradia Group. Unauthorized use is prohibited.</li>
+                <li><strong>Liability:</strong> While we strive for accuracy, Baradia Group is not liable for errors or omissions on this website.</li>
+                <li><strong>Jurisdiction:</strong> These terms are governed by the laws of Kolkata, India.</li>
+            </ul>
+        </section>
+
+        <section id="cookies" class="legal-section">
+            <h2>Cookie Policy</h2>
+            <p>This website uses cookies to enhance browsing experience and analyze traffic.</p>
+            <ul>
+                <li><strong>Essential Cookies:</strong> Necessary for the website to function correctly.</li>
+                <li><strong>Analytics:</strong> We use third-party tools (like Google Analytics) to understand how visitors use our site.</li>
+                <li><strong>Control:</strong> You can choose to disable cookies through your browser settings at any time.</li>
+            </ul>
+        </section>
+
+        <section class="legal-section">
+            <p style="font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+                Questions? Contact us at <a href="mailto:contact@baradia.com" style="color:#fff; text-decoration:none;">contact@baradia.com</a>
+            </p>
+        </section>
+
+    </div>
+
+</body>
+</html>

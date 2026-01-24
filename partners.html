@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Partnership | SEWA Foundation</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    WebFont.load({ google: { families: ["Arimo:regular,700","Playfair Display:regular,500,700"] }});
+  </script>
+
+  <style>
+    :root {
+      --sewa-green: #2D6A4F;
+      --sewa-light-green: #74C69D;
+      --baradia-black: #1a1a1a;
+      --bg-color: #f4f9f6;
+      --font-main: 'Arimo', sans-serif;
+      --font-serif: 'Playfair Display', serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--baradia-black);
+      font-family: var(--font-main);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+    /* --- NAVIGATION --- */
+    .nav-bar {
+      position: fixed; top: 0; left: 0; width: 100%;
+      padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100; pointer-events: none;
+    }
+    .nav-logo {
+      pointer-events: auto;
+      font-family: var(--font-main); font-size: 1.8rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--sewa-green);
+    }
+    .menu-btn {
+      pointer-events: auto; cursor: pointer; width: 40px; height: 20px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .menu-line { width: 100%; height: 2px; background-color: var(--sewa-green); }
+
+    /* --- DECORATIVE --- */
+    .sewa-symbol {
+      position: fixed; right: -5vw; top: 40%; width: 40vw; height: 40vw;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--sewa-green) 0% 25%,
+        var(--sewa-light-green) 25% 50%,
+        #E8F5E9 50% 75%,
+        white 75% 100%
+      );
+      opacity: 0.05; pointer-events: none; z-index: -1;
+      animation: rotate 60s linear infinite;
+    }
+    @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* --- HERO --- */
+    .hero {
+      position: relative; min-height: 70vh;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 0 10vw;
+      margin-top: 80px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      line-height: 1.1;
+      font-weight: 500;
+      margin-bottom: 1.8rem;
+      opacity: 0; transform: translateY(30px);
+    }
+    .hero h1 span { color: var(--sewa-green); font-style: italic; }
+
+    .hero-subtext {
+      font-size: 1.1rem; line-height: 1.6;
+      max-width: 700px;
+      border-left: 2px solid var(--sewa-green);
+      padding-left: 1.5rem; margin-left: 5px;
+      opacity: 0; transform: translateY(30px);
+    }
+
+    /* --- PARTNER SECTION --- */
+    .partner-section {
+      padding: 6rem 5vw;
+      background: #fff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--sewa-green);
+      color: white;
+      padding: 0.55rem 1.5rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0; transform: translateY(30px);
+    }
+
+    .title {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      line-height: 1.2;
+      color: var(--sewa-green);
+      margin-bottom: 1.2rem;
+      opacity: 0; transform: translateY(30px);
+    }
+
+    .desc {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 2rem;
+      opacity: 0; transform: translateY(30px);
+    }
+
+    /* Partnership types */
+    .partner-types {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .type-box {
+      background: #f8fcf9;
+      padding: 1.6rem;
+      border-radius: 10px;
+      border-left: 4px solid var(--sewa-light-green);
+      opacity: 0; transform: translateY(40px);
+      transition: transform 0.3s;
+    }
+    .type-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(45, 106, 79, 0.12);
+    }
+    .type-box h4 {
+      color: var(--sewa-green);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .type-box p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    /* Contact card */
+    .form-card {
+      background: #f8fcf9;
+      border-radius: 12px;
+      padding: 2.2rem;
+      border: 1px solid rgba(45,106,79,0.15);
+      opacity: 0; transform: translateY(40px);
+    }
+
+    .form-card h3 {
+      font-family: var(--font-serif);
+      color: var(--baradia-black);
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .email {
+      display: inline-block;
+      margin-top: 0.6rem;
+      padding: 0.9rem 1rem;
+      border-radius: 10px;
+      border: 1px solid rgba(45,106,79,0.25);
+      background: white;
+      color: var(--sewa-green);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      width: 100%;
+    }
+
+    .email a {
+      color: var(--sewa-green);
+      text-decoration: underline;
+    }
+
+    .note {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    /* --- ANIMATIONS --- */
+    .fade-in-up { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    .anim-target { opacity: 0; transform: translateY(40px); }
+
+    /* Preloader */
+    .preloader {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #fff;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.8s ease;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-bar { padding: 1.5rem; }
+      .hero { padding: 0 1.5rem; min-height: 60vh; }
+      .container { grid-template-columns: 1fr; }
+      .partner-types { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="preloader" id="preloader">
+    <div style="font-family: 'Arimo'; font-weight: 700; letter-spacing: 0.2em; color: var(--sewa-green);">
+      SEWA FOUNDATION
+    </div>
+  </div>
+
+  <div class="nav-bar">
+    <a href="index.html" class="nav-logo">BARADIA</a>
+    <div class="menu-btn">
+      <div class="menu-line"></div>
+      <div class="menu-line"></div>
+      <div class="menu-line"></div>
+    </div>
+  </div>
+
+  <div class="sewa-symbol"></div>
+
+  <section class="hero">
+    <h1 class="anim-target" style="transition-delay: 0.2s;">
+      Partner With<br>
+      <span>SEWA.</span>
+    </h1>
+    <div class="hero-subtext anim-target" style="transition-delay: 0.4s;">
+      Strong partnerships build stronger communities. If your organization wants to create measurable impact,
+      we’d love to collaborate.
+    </div>
+  </section>
+
+  <section class="partner-section">
+    <div class="container">
+
+      <div>
+        <div class="badge anim-target" style="transition-delay:0.1s;">Partnerships</div>
+
+        <h2 class="title anim-target" style="transition-delay:0.2s;">
+          Together we can<br/>scale real change.
+        </h2>
+
+        <p class="desc anim-target" style="transition-delay:0.3s;">
+          SEWA invites companies, NGOs, institutions, and individuals to collaborate on initiatives that are
+          transparent, outcome-driven, and long-lasting.
+        </p>
+
+        <div class="partner-types">
+          <div class="type-box anim-target" style="transition-delay:0.15s;">
+            <h4>CSR Collaborations</h4>
+            <p>Support impactful initiatives aligned with your organization’s CSR vision.</p>
+          </div>
+
+          <div class="type-box anim-target" style="transition-delay:0.25s;">
+            <h4>Program Sponsorship</h4>
+            <p>Fund and scale community programs with clear reporting and outcomes.</p>
+          </div>
+
+          <div class="type-box anim-target" style="transition-delay:0.35s;">
+            <h4>Resource Support</h4>
+            <p>Technology, medical, education or infrastructure support for target communities.</p>
+          </div>
+
+          <div class="type-box anim-target" style="transition-delay:0.45s;">
+            <h4>Volunteer Network</h4>
+            <p>Engage employees and individuals in meaningful on-ground and digital volunteering.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card anim-target" style="transition-delay:0.2s;">
+        <h3>Get in Touch</h3>
+
+        <div class="email">
+          Email: <a href="mailto:sumit@baradiagroup.com">sumit@baradiagroup.com</a>
+        </div>
+
+        <div class="note">
+          Reach out directly at <b>sumit@baradiagroup.com</b> for partnership discussions.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => {
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+          preloader.style.display = 'none';
+          initObserver();
+        }, 800);
+      }, 800);
+    });
+
+    const initObserver = () => {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-up');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.anim-target').forEach(t => observer.observe(t));
+    };
+  </script>
+</body>
+</html>

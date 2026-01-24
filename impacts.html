@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Impact Areas | SEWA Foundation</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    WebFont.load({ google: { families: ["Arimo:regular,700","Playfair Display:regular,500,700"] }});
+  </script>
+
+  <style>
+    :root {
+      --sewa-green: #2D6A4F;
+      --sewa-light-green: #74C69D;
+      --baradia-black: #1a1a1a;
+      --bg-color: #f4f9f6;
+      --font-main: 'Arimo', sans-serif;
+      --font-serif: 'Playfair Display', serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--baradia-black);
+      font-family: var(--font-main);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+    .nav-bar {
+      position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100; pointer-events: none;
+    }
+    .nav-logo {
+      pointer-events: auto;
+      font-family: var(--font-main); font-size: 1.8rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--sewa-green);
+    }
+    .menu-btn {
+      pointer-events: auto; cursor: pointer; width: 40px; height: 20px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .menu-line { width: 100%; height: 2px; background-color: var(--sewa-green); }
+
+    .sewa-symbol {
+      position: fixed; right: -5vw; top: 40%; width: 40vw; height: 40vw;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--sewa-green) 0% 25%,
+        var(--sewa-light-green) 25% 50%,
+        #E8F5E9 50% 75%,
+        white 75% 100%
+      );
+      opacity: 0.05; pointer-events: none; z-index: -1;
+      animation: rotate 60s linear infinite;
+    }
+    @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    .hero {
+      position: relative; min-height: 70vh;
+      display: flex; flex-direction: column;
+      justify-content: center; padding: 0 10vw;
+      margin-top: 80px;
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      line-height: 1.1; font-weight: 500; margin-bottom: 1.8rem;
+      opacity: 0; transform: translateY(30px);
+    }
+    .hero h1 span { color: var(--sewa-green); font-style: italic; }
+
+    .hero-subtext {
+      font-size: 1.1rem; line-height: 1.6;
+      max-width: 700px;
+      border-left: 2px solid var(--sewa-green);
+      padding-left: 1.5rem; margin-left: 5px;
+      opacity: 0; transform: translateY(30px);
+    }
+
+    .impact-section {
+      padding: 6rem 5vw;
+      background: #fff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--sewa-green);
+      margin-bottom: 1rem;
+      opacity: 0; transform: translateY(30px);
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #333;
+      max-width: 850px;
+      margin-bottom: 3rem;
+      opacity: 0; transform: translateY(30px);
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .impact-card {
+      background: #f8fcf9;
+      border-radius: 10px;
+      padding: 2.2rem;
+      border-left: 4px solid var(--sewa-light-green);
+      transition: transform 0.3s;
+      opacity: 0; transform: translateY(40px);
+    }
+
+    .impact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(45, 106, 79, 0.12);
+    }
+
+    .impact-card h3 {
+      color: var(--sewa-green);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .impact-card p {
+      color: #555;
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    .impact-metrics {
+      margin-top: 4rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .metric-box {
+      background: white;
+      border: 1px solid rgba(45,106,79,0.15);
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      opacity: 0; transform: translateY(40px);
+    }
+
+    .metric-box h4 {
+      font-size: 2rem;
+      font-family: var(--font-serif);
+      color: var(--sewa-green);
+      margin-bottom: 0.3rem;
+    }
+
+    .metric-box span {
+      font-size: 0.95rem;
+      color: #555;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .fade-in-up { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    .anim-target { opacity: 0; transform: translateY(40px); }
+
+    .preloader {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #fff;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.8s ease;
+    }
+
+    @media (max-width: 768px) {
+      .nav-bar { padding: 1.5rem; }
+      .hero { padding: 0 1.5rem; min-height: 60vh; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .impact-metrics { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="preloader" id="preloader">
+    <div style="font-family: 'Arimo'; font-weight: 700; letter-spacing: 0.2em; color: var(--sewa-green);">
+      SEWA FOUNDATION
+    </div>
+  </div>
+
+  <div class="nav-bar">
+    <a href="index.html" class="nav-logo">BARADIA</a>
+    <div class="menu-btn">
+      <div class="menu-line"></div>
+      <div class="menu-line"></div>
+      <div class="menu-line"></div>
+    </div>
+  </div>
+
+  <div class="sewa-symbol"></div>
+
+  <section class="hero">
+    <h1 class="anim-target" style="transition-delay: 0.2s;">
+      Our Impact<br>
+      <span>In Action.</span>
+    </h1>
+    <div class="hero-subtext anim-target" style="transition-delay: 0.4s;">
+      SEWA focuses on long-term transformation through structured programs across key areas.
+      Each initiative is built for sustainability, community ownership, and measurable progress.
+    </div>
+  </section>
+
+  <section class="impact-section">
+    <div class="container">
+      <h2 class="section-title anim-target" style="transition-delay:0.1s;">Impact Areas</h2>
+      <p class="section-desc anim-target" style="transition-delay:0.2s;">
+        Our work is guided by purpose and powered by action. These are the domains where SEWA actively builds stronger, healthier,
+        and more empowered communities.
+      </p>
+
+      <div class="impact-grid">
+        <div class="impact-card anim-target" style="transition-delay:0.1s;">
+          <h3>Education</h3>
+          <p>Skill-building, scholarships, mentoring programs and digital literacy to create self-reliant learners.</p>
+        </div>
+        <div class="impact-card anim-target" style="transition-delay:0.2s;">
+          <h3>Healthcare</h3>
+          <p>Medical support, camps, awareness drives and better access to essential care for rural & urban communities.</p>
+        </div>
+        <div class="impact-card anim-target" style="transition-delay:0.3s;">
+          <h3>Women Empowerment</h3>
+          <p>Training, micro-enterprise support and financial independence programs focused on women-led development.</p>
+        </div>
+        <div class="impact-card anim-target" style="transition-delay:0.15s;">
+          <h3>Community Development</h3>
+          <p>Clean water access, sanitation support, infrastructure improvement and inclusive local growth models.</p>
+        </div>
+        <div class="impact-card anim-target" style="transition-delay:0.25s;">
+          <h3>Sustainable Livelihood</h3>
+          <p>Vocational training and local business enablement with mentorship, tools and support systems.</p>
+        </div>
+        <div class="impact-card anim-target" style="transition-delay:0.35s;">
+          <h3>Environment</h3>
+          <p>Tree plantation, conservation programs and sustainability awareness for a healthier future.</p>
+        </div>
+      </div>
+
+      <div class="impact-metrics">
+        <div class="metric-box anim-target" style="transition-delay:0.1s;">
+          <h4>10K+</h4>
+          <span>Lives Touched</span>
+        </div>
+        <div class="metric-box anim-target" style="transition-delay:0.2s;">
+          <h4>100+</h4>
+          <span>Programs</span>
+        </div>
+        <div class="metric-box anim-target" style="transition-delay:0.3s;">
+          <h4>50+</h4>
+          <span>Partners</span>
+        </div>
+        <div class="metric-box anim-target" style="transition-delay:0.4s;">
+          <h4>7+</h4>
+          <span>Years</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => {
+        preloader.style.opacity = '0';
+        setTimeout(() => { preloader.style.display = 'none'; initObserver(); }, 800);
+      }, 800);
+    });
+
+    const initObserver = () => {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-up');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.anim-target').forEach(t => observer.observe(t));
+    };
+  </script>
+</body>
+</html>

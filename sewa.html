@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Baradia | SEWA Foundation</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+   
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+    <script type="text/javascript">WebFont.load({ google: { families: ["Arimo:regular,700","Playfair Display:regular,500,700"] }});</script>
+    <style>
+        /* --- CORE VARIABLES (Customized for SEWA) --- */
+        :root {
+            --sewa-green: #2D6A4F;
+            --sewa-light-green: #74C69D;
+            --baradia-black: #1a1a1a;
+            --bg-color: #f4f9f6; /* Slightly greenish tint for background */
+            --font-main: 'Arimo', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--baradia-black);
+            font-family: var(--font-main);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- NAVIGATION --- */
+        .nav-bar {
+            position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 3rem;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; pointer-events: none;
+        }
+        .nav-logo {
+            pointer-events: auto;
+            font-family: var(--font-main); font-size: 1.8rem; font-weight: 700;
+            letter-spacing: 0.25em; text-transform: uppercase; color: var(--sewa-green);
+        }
+        .menu-btn {
+            pointer-events: auto; cursor: pointer; width: 40px; height: 20px;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .menu-line { width: 100%; height: 2px; background-color: var(--sewa-green); }
+
+        /* --- HERO --- */
+        .hero {
+            position: relative; min-height: 85vh; display: flex; flex-direction: column;
+            justify-content: center; padding: 0 10vw; margin-top: 80px;
+        }
+        .hero h1 {
+            font-family: var(--font-serif); font-size: clamp(3rem, 6vw, 6rem);
+            line-height: 1.1; font-weight: 500; margin-bottom: 2rem;
+            opacity: 0; transform: translateY(30px);
+        }
+        .hero h1 span { color: var(--sewa-green); font-style: italic; }
+        .hero-subtext {
+            font-family: var(--font-main); font-size: 1.1rem; line-height: 1.6;
+            max-width: 600px; border-left: 2px solid var(--sewa-green);
+            padding-left: 1.5rem; margin-left: 5px;
+            opacity: 0; transform: translateY(30px);
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        .sewa-highlight {
+            padding: 6rem 5vw;
+            background: #fff;
+            margin: 0;
+        }
+        .sewa-container {
+            max-width: 1200px; margin: 0 auto; display: grid;
+            grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+        }
+        .sewa-badge {
+            background: var(--sewa-green); color: white; padding: 0.5rem 1.5rem;
+            border-radius: 25px; font-size: 0.9rem; font-weight: 700;
+            letter-spacing: 0.1em; display: inline-block; margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+        .sewa-slogan {
+            font-family: var(--font-serif); font-size: 2.5rem; line-height: 1.2;
+            color: var(--sewa-green); margin-bottom: 1.5rem;
+        }
+        .sewa-description {
+            font-size: 1.1rem; line-height: 1.7; color: #333; margin-bottom: 2rem;
+        }
+        
+        /* Pillars Grid */
+        .sewa-pillars {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;
+        }
+        .pillar {
+            background: #f8fcf9; padding: 2rem; border-radius: 8px;
+            border-left: 4px solid var(--sewa-light-green);
+            transition: transform 0.3s;
+        }
+        .pillar:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(45, 106, 79, 0.1); }
+        .pillar h4 {
+            color: var(--sewa-green); margin-bottom: 0.8rem; font-size: 1.1rem;
+            text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;
+        }
+        .pillar p { font-size: 0.95rem; line-height: 1.5; color: #555; }
+
+        /* --- DECORATIVE --- */
+        .sewa-symbol {
+            position: fixed; right: -5vw; top: 40%; width: 40vw; height: 40vw;
+            border-radius: 50%;
+            background: conic-gradient(var(--sewa-green) 0% 25%, var(--sewa-light-green) 25% 50%, #E8F5E9 50% 75%, white 75% 100%);
+            opacity: 0.05; pointer-events: none; z-index: -1; animation: rotate 60s linear infinite;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* --- UTILS --- */
+        .fade-in-up { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .anim-target { opacity: 0; transform: translateY(40px); }
+        
+        .preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; z-index: 9999; display: flex;
+            justify-content: center; align-items: center; transition: opacity 0.8s ease;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-bar { padding: 1.5rem; }
+            .hero { padding: 0 1.5rem; min-height: 70vh; }
+            .hero h1 { font-size: 3rem; }
+            .sewa-container { grid-template-columns: 1fr; gap: 2rem; }
+            .sewa-pillars { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader" id="preloader">
+        <div style="font-family: 'Arimo'; font-weight: 700; letter-spacing: 0.2em; color: var(--sewa-green);">SEWA FOUNDATION</div>
+    </div>
+    
+    <div class="nav-bar">
+        <a href="index.html" class="nav-logo">BARADIA</a>
+        <div class="menu-btn">
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+        </div>
+    </div>
+    
+    <div class="sewa-symbol"></div>
+    
+    <section class="hero">
+        <h1 class="anim-target" style="transition-delay: 0.2s;">
+            Service Through<br>
+            <span>Empowerment.</span>
+        </h1>
+        <div class="hero-subtext anim-target" style="transition-delay: 0.4s;">
+            SEWA (Service & Empowerment With Action) is our commitment to creating sustainable ecosystems where communities thrive.
+        </div>
+    </section>
+    
+    <section class="sewa-highlight">
+        <div class="sewa-container">
+            <div class="anim-target" style="transition-delay: 0.1s;">
+                <div class="sewa-badge">Our Mission</div>
+                <h2 class="sewa-slogan">Beyond Philanthropy,<br>Into Action.</h2>
+                <p class="sewa-description">
+                    We measure our success not just by profit, but by the positive impact we create. We believe in building capacity, not just donating resources. Every initiative is designed to be community-led and sustainable long after our initial intervention.
+                </p>
+                <div style="margin-top: 3rem;">
+                    <a href="#" style="background: var(--sewa-green); color: white; padding: 1rem 2rem; border-radius: 4px; font-weight: 600; letter-spacing: 0.05em; display: inline-block;">Download Impact Report</a>
+                </div>
+            </div>
+            
+            <div class="anim-target" style="transition-delay: 0.3s;">
+                <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--baradia-black);">Pillars of Impact</h3>
+                <div class="sewa-pillars">
+                    <div class="pillar">
+                        <h4>Education</h4>
+                        <p>Digital literacy programs, vocational training, and scholarships for the underprivileged.</p>
+                    </div>
+                    <div class="pillar">
+                        <h4>Healthcare</h4>
+                        <p>Mobile clinics, health awareness camps, and clean water infrastructure projects.</p>
+                    </div>
+                    <div class="pillar">
+                        <h4>Economy</h4>
+                        <p>Micro-finance support and entrepreneurship mentoring for local women.</p>
+                    </div>
+                    <div class="pillar">
+                        <h4>Environment</h4>
+                        <p>Large-scale reforestation and renewable energy adoption in rural areas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => { preloader.style.display = 'none'; initObserver(); }, 800);
+            }, 800);
+        });
+        
+        const initObserver = () => {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.anim-target').forEach(t => observer.observe(t));
+        };
+    </script>
+</body>
+</html>
