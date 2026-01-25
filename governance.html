@@ -1,1 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Governance | Baradia Group</title>
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#b28f78;
+      --muted:rgba(255,255,255,0.72);
+      --muted2:rgba(255,255,255,0.55);
+      --accent:#C2152F;
+      --card:rgba(255,255,255,0.08);
+      --border:rgba(255,255,255,0.16);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Arimo',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden;}
+    a{color:inherit;text-decoration:none;}
+    .wrap{max-width:1300px;margin:0 auto;padding:70px 6vw;}
+
+    .topbar{
+      display:flex;justify-content:space-between;align-items:center;
+      gap:20px;margin-bottom:70px;
+    }
+    .logo{font-weight:700;letter-spacing:0.25em;font-size:1.4rem;text-transform:uppercase;}
+    .navlinks{
+      display:flex;gap:22px;align-items:center;
+      font-family:'Playfair Display',serif;font-size:1rem;opacity:0.85;
+      flex-wrap:wrap;
+    }
+    .navlinks a{position:relative;padding-bottom:4px;}
+    .navlinks a::after{
+      content:"";position:absolute;left:0;bottom:0;width:0%;
+      height:2px;background:var(--accent);transition:0.35s ease;
+    }
+    .navlinks a:hover::after{width:100%;}
+
+    .hero{
+      margin-bottom:70px;
+    }
+    .hero h1{
+      font-family:'Playfair Display',serif;
+      font-size:4rem;line-height:1.05;letter-spacing:-0.02em;
+      margin-bottom:20px;
+    }
+    .hero h1 span{color:var(--accent);font-weight:700;}
+    .hero p{
+      font-size:1.15rem;line-height:1.7;
+      color:var(--muted);max-width:700px;
+      font-family:'Playfair Display',serif;
+    }
+
+    .section-title{
+      display:flex;align-items:center;gap:12px;margin:60px 0 30px;
+    }
+    .section-title h2{
+      font-family:'Playfair Display',serif;font-size:2rem;letter-spacing:-0.02em;
+    }
+    .line{flex:1;height:1px;background:rgba(255,255,255,0.15);}
+
+    .governance-structure{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:25px;
+      margin-bottom:60px;
+    }
+
+    .structure-card{
+      border:1px solid var(--border);
+      background:linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02));
+      border-radius:18px;
+      padding:30px;
+      transition:0.35s ease;
+    }
+    .structure-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(255,255,255,0.28);
+    }
+
+    .structure-card h3{
+      font-family:'Playfair Display',serif;
+      font-size:1.5rem;
+      margin-bottom:15px;
+      color:#fff;
+      padding-bottom:12px;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    .structure-card ul{
+      list-style:none;
+      padding:0;
+    }
+
+    .structure-card li{
+      padding:12px 0;
+      border-bottom:1px solid rgba(255,255,255,0.05);
+      color:var(--muted);
+      font-family:'Playfair Display',serif;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .structure-card li:before{
+      content:"•";
+      color:var(--accent);
+      font-size:1.5rem;
+    }
+
+    .principles-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:25px;
+      margin:40px 0;
+    }
+
+    .principle-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:25px;
+    }
+
+    .principle-card h4{
+      font-family:'Playfair Display',serif;
+      font-size:1.3rem;
+      margin-bottom:12px;
+      color:#fff;
+    }
+
+    .principle-card p{
+      color:var(--muted);
+      line-height:1.7;
+      font-family:'Playfair Display',serif;
+      font-size:0.95rem;
+    }
+
+    .pill{
+      display:inline-block;
+      padding:7px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);
+      font-size:0.8rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--muted2);
+      margin-bottom:14px;
+    }
+
+    .committee-section{
+      margin:60px 0;
+    }
+
+    .committee-card{
+      background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01));
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:30px;
+      margin-bottom:25px;
+    }
+
+    .committee-card h4{
+      font-family:'Playfair Display',serif;
+      font-size:1.4rem;
+      margin-bottom:15px;
+      color:#fff;
+    }
+
+    .committee-card p{
+      color:var(--muted);
+      font-family:'Playfair Display',serif;
+      line-height:1.7;
+    }
+
+    .mini-footer{
+      margin-top:70px;padding-top:25px;border-top:1px solid rgba(255,255,255,0.12);
+      display:flex;justify-content:space-between;align-items:center;
+      color:var(--muted2);font-size:0.9rem;flex-wrap:wrap;gap:10px;
+    }
+
+    @media(max-width:992px){
+      .hero h1{font-size:3.1rem;}
+      .principles-grid{grid-template-columns:1fr;}
+      .governance-structure{grid-template-columns:1fr;}
+      .topbar{flex-direction:column;align-items:flex-start;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="logo">BARADIA</div>
+      <div class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="legacy.html">Legacy</a>
+        <a href="vision.html">Vision</a>
+        <a href="impact.html">Impact</a>
+        <a href="verticals.html">Groups</a>
+        <a href="governance.html">Governance</a>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>
+        Governance <span>Framework</span><br>
+        & Structure
+      </h1>
+      <p>
+        Our governance model ensures accountability, transparency, and ethical decision-making across all levels of the organization. We believe strong governance is the foundation of sustainable growth.
+      </p>
+    </section>
+
+    <!-- Governance Structure -->
+    <div class="section-title">
+      <h2>Governance Structure</h2>
+      <div class="line"></div>
+    </div>
+
+    <section class="governance-structure">
+      <div class="structure-card">
+        <h3>Board of Directors</h3>
+        <ul>
+          <li>Chairperson & Independent Director</li>
+          <li>3 Executive Directors</li>
+          <li>4 Independent Directors</li>
+          <li>Nomination & Remuneration Committee</li>
+          <li>Audit Committee</li>
+          <li>Risk Management Committee</li>
+        </ul>
+      </div>
+
+      <div class="structure-card">
+        <h3>Executive Leadership</h3>
+        <ul>
+          <li>Group CEO & Managing Director</li>
+          <li>CFO & Head of Finance</li>
+          <li>COO & Head of Operations</li>
+          <li>CTO & Head of Innovation</li>
+          <li>Vertical Heads (4 Business Units)</li>
+          <li>Legal & Compliance Head</li>
+        </ul>
+      </div>
+
+      <div class="structure-card">
+        <h3>Oversight Committees</h3>
+        <ul>
+          <li>Ethics & Compliance Committee</li>
+          <li>ESG & Sustainability Council</li>
+          <li>Technology Advisory Board</li>
+          <li>Investment Review Committee</li>
+          <li>Stakeholder Relations Panel</li>
+          <li>Internal Audit & Controls</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Core Principles -->
+    <div class="section-title">
+      <h2>Core Governance Principles</h2>
+      <div class="line"></div>
+    </div>
+
+    <section class="principles-grid">
+      <div class="principle-card">
+        <div class="pill">Principle 1</div>
+        <h4>Transparency</h4>
+        <p>All material information is disclosed to stakeholders promptly and accurately. Decision-making processes are documented and accessible to authorized personnel.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="pill">Principle 2</div>
+        <h4>Accountability</h4>
+        <p>Clear lines of responsibility from board to operational teams. Regular performance reviews and audit mechanisms ensure accountability at all levels.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="pill">Principle 3</div>
+        <h4>Independence</h4>
+        <p>Independent directors form majority in key committees. External audits and third-party validations ensure unbiased oversight.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="pill">Principle 4</div>
+        <h4>Stakeholder Inclusivity</h4>
+        <p>Regular engagement with shareholders, employees, clients, and community representatives. Feedback mechanisms integrated into governance processes.</p>
+      </div>
+    </section>
+
+    <!-- Key Committees -->
+    <div class="section-title">
+      <h2>Key Committees</h2>
+      <div class="line"></div>
+    </div>
+
+    <section class="committee-section">
+      <div class="committee-card">
+        <h4>Audit & Risk Committee</h4>
+        <p>Oversees financial reporting, internal controls, risk management framework, and compliance with accounting standards. Meets quarterly with external auditors.</p>
+      </div>
+
+      <div class="committee-card">
+        <h4>ESG & Sustainability Council</h4>
+        <p>Drives environmental, social, and governance initiatives. Monitors sustainability metrics, community programs, and ethical supply chain practices.</p>
+      </div>
+
+      <div class="committee-card">
+        <h4>Technology Governance Board</h4>
+        <p>Reviews technology investments, cybersecurity measures, data privacy policies, and innovation pipeline. Ensures alignment with business objectives.</p>
+      </div>
+    </section>
+
+    <!-- Compliance Statement -->
+    <div class="principle-card" style="margin-top:50px;">
+      <h4>Compliance & Ethics Statement</h4>
+      <p>Baradia Group adheres to all applicable laws and regulations in jurisdictions where we operate. Our Code of Conduct applies to every employee, director, and partner. We maintain zero tolerance for corruption, discrimination, or unethical practices.</p>
+      <p style="margin-top:15px;font-size:0.9rem;color:var(--muted2);">Last reviewed: April 2025 | Next review: April 2026</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="mini-footer">
+      <div>© 2025 Baradia Group</div>
+      <div>Governance • Ethics • Compliance</div>
+    </div>
+  </div>
+</body>
+</html>
