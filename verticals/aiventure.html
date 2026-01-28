@@ -4,17 +4,14 @@
   <meta charset="utf-8"/>
   <title>Baradia | AI Ventures</title>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
-
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
   <script type="text/javascript">
     WebFont.load({ google: { families: ["Arimo:regular,700","Playfair Display:regular,500,700"] }});
   </script>
-
   <style>
     :root {
-      --baradia-red: #C2152F;
       --baradia-black: #1a1a1a;
       --bg-color: #f7f7f5;
       --font-main: 'Arimo', sans-serif;
@@ -24,7 +21,6 @@
       --ai-teal: #00a8a8;
       --ai-light: #f0fcfc;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background-color: var(--bg-color);
@@ -34,333 +30,496 @@
       overflow-x: hidden;
     }
     a { text-decoration: none; color: inherit; transition: 0.3s; }
-
-    /* --- NAVIGATION --- */
     .nav-bar {
       position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 3rem;
       display: flex; justify-content: space-between; align-items: center;
-      z-index: 100; pointer-events: none;
+      z-index: 100; pointer-events: none; mix-blend-mode: difference;
     }
     .nav-logo {
       pointer-events: auto;
       font-family: var(--font-main); font-size: 1.8rem; font-weight: 700;
-      letter-spacing: 0.25em; text-transform: uppercase; color: var(--baradia-black);
+      letter-spacing: 0.25em; text-transform: uppercase; color: #fff;
     }
     .nav-back {
       pointer-events: auto;
       font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase;
       display: flex; align-items: center; gap: 8px;
-      opacity: 0.7; transition: opacity 0.3s;
+      opacity: 0.7; transition: opacity 0.3s; color: #fff;
     }
     .nav-back:hover { opacity: 1; }
-
-    /* --- HERO --- */
-    .vertical-hero {
+    .hero-visual {
       position: relative;
-      min-height: 85vh;
+      height: 100vh;
+      width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 0 10vw;
-      margin-top: 80px;
-      background: linear-gradient(135deg, var(--ai-light) 0%, #ffffff 100%);
+      justify-content: flex-end;
+      padding: 0 10vw 8rem;
+      overflow: hidden;
     }
-
-    .vertical-hero h1 {
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2664&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+      transform: scale(1.1);
+      animation: slowZoom 20s ease-out forwards;
+    }
+    @keyframes slowZoom {
+      to { transform: scale(1); }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+    .hero-label {
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1.5rem;
+      display: block;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      line-height: 1.08;
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      line-height: 0.95;
       font-weight: 500;
+      color: #fff;
       margin-bottom: 1.5rem;
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
     }
-
-    .vertical-subtitle {
+    .hero-subtitle {
       font-family: var(--font-serif);
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      line-height: 1.3;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      max-width: 600px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .story-strip {
+      position: relative;
+      height: 70vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--baradia-black);
+    }
+    .story-strip-bg {
+      position: absolute;
+      width: 100%; height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2600&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.6;
+      mix-blend-mode: luminosity;
+    }
+    .story-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 2rem;
+    }
+    .story-text p {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
       line-height: 1.2;
+      color: #fff;
+      max-width: 900px;
       font-weight: 500;
-      color: var(--ai-teal);
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      transform: translateY(30px);
     }
-
-    .hero-description {
-      font-family: var(--font-main);
-      font-size: 1.1rem;
-      line-height: 1.8;
-      max-width: 800px;
-      color: var(--muted);
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    /* --- BACKGROUND LINE --- */
-    .background-line {
-      position: fixed; right: 15vw; top: 0; bottom: 0;
-      width: 1px; background: rgba(0,0,0,0.05); z-index: -1;
-    }
-
-    /* --- SECTION --- */
     .section {
-      padding: 5rem 10vw;
+      padding: 6rem 10vw;
       border-top: 1px solid var(--line);
     }
-
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       gap: 2rem;
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
       opacity: 0;
       transform: translateY(30px);
     }
-
     .section-title {
       font-family: var(--font-serif);
-      font-size: clamp(2rem, 3vw, 3.2rem);
+      font-size: clamp(2.2rem, 3.5vw, 3.5rem);
       font-weight: 500;
       letter-spacing: -0.02em;
       line-height: 1.1;
     }
-
-    .section-desc {
-      max-width: 540px;
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--muted);
-    }
-
-    /* --- CONTENT BLOCK --- */
-    .content-block {
-      max-width: 1000px;
-      margin-bottom: 3rem;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    .content-block-title {
-      font-family: var(--font-serif);
-      font-size: 1.8rem;
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-      color: var(--ai-teal);
-    }
-
-    .content-block-text {
-      font-family: var(--font-main);
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .highlight-list {
-      list-style: none;
-      margin: 2rem 0;
-    }
-
-    .highlight-list li {
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--line);
-      font-family: var(--font-main);
-      font-size: 1.1rem;
-      line-height: 1.6;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .highlight-list li:before {
-      content: "•";
-      color: var(--ai-teal);
-      font-size: 1.5rem;
-      line-height: 1;
-    }
-
-    /* --- FEATURE GRID --- */
-    .feature-grid {
+    .split-vision {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+      border-top: 1px solid var(--line);
     }
-
-    .feature-card {
-      background: rgba(255,255,255,0.7);
-      border: 1px solid var(--line);
-      padding: 2.5rem 2rem;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: transform 0.3s ease;
+    .split-image {
       position: relative;
       overflow: hidden;
     }
-
-    .feature-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 70px rgba(0,0,0,0.08);
+    .split-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.1);
+      transition: transform 1.2s ease;
     }
-
-    .feature-icon {
-      font-family: var(--font-serif);
-      font-size: 2.5rem;
-      line-height: 1;
-      color: var(--ai-teal);
-      margin-bottom: 1.5rem;
+    .split-vision:hover .split-image img {
+      transform: scale(1);
     }
-
-    .feature-title {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      font-weight: 500;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
-    .feature-text {
-      font-family: var(--font-main);
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--muted);
-    }
-
-    /* --- TWO COLUMN LAYOUT --- */
-    .two-column {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .column {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    /* --- QUOTE SECTION --- */
-    .quote-section {
-      padding: 5rem 10vw;
+    .split-content {
+      padding: 6rem 5vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       background: var(--ai-light);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      text-align: center;
-      opacity: 0;
-      transform: translateY(30px);
     }
-
-    .quote-section p {
-      font-family: var(--font-serif);
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+    .split-label {
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       color: var(--ai-teal);
-      max-width: 900px;
+      margin-bottom: 1rem;
+    }
+    .split-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    .split-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 500px;
+    }
+    .platform-section {
+      padding: 8rem 10vw;
+      background: var(--bg-color);
+      position: relative;
+      overflow: hidden;
+    }
+    .platform-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1400px;
       margin: 0 auto;
     }
-
-    /* --- PROCESS STEPS --- */
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 3rem auto;
+    .platform-content {
+      opacity: 0;
+      transform: translateX(-30px);
     }
-
-    .process-step {
-      text-align: center;
+    .platform-label {
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ai-teal);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .platform-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    .platform-features {
+      list-style: none;
+      margin-top: 2rem;
+    }
+    .platform-features li {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .platform-features li:before {
+      content: "—";
+      color: var(--ai-teal);
+      font-weight: 700;
+    }
+    .device-showcase {
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    .monitor-mockup {
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #1a1a1a;
+      border: 8px solid #1a1a1a;
+      transition: transform 0.4s ease;
+    }
+    .monitor-mockup:hover {
+      transform: scale(1.02);
+    }
+    .monitor-mockup img {
+      width: 100%;
+      display: block;
+      border-radius: 4px;
+    }
+    .laptop-mockup {
+      position: absolute;
+      bottom: -50px;
+      right: -80px;
+      width: 60%;
+      z-index: 3;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 6px solid #2a2a2a;
+      background: #1a1a1a;
+      transform: rotate(-5deg);
+      transition: transform 0.4s ease;
+    }
+    .laptop-mockup:hover {
+      transform: rotate(-2deg) scale(1.05);
+    }
+    .laptop-mockup img {
+      width: 100%;
+      display: block;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .service-card {
+      padding: 4rem 3rem;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
       opacity: 0;
       transform: translateY(30px);
+      transition: all 0.4s ease;
+      background: var(--bg-color);
     }
-
-    .step-number {
+    .service-card:hover {
+      background: var(--ai-light);
+    }
+    .service-number {
       font-family: var(--font-serif);
       font-size: 3rem;
       color: var(--ai-teal);
-      margin-bottom: 1rem;
+      opacity: 0.2;
       line-height: 1;
+      margin-bottom: 1.5rem;
     }
-
-    .step-title {
-      font-family: var(--font-main);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
+    .service-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
     }
-
-    .step-desc {
-      font-family: var(--font-main);
-      font-size: 0.95rem;
+    .service-text {
+      font-size: 1rem;
       line-height: 1.6;
       color: var(--muted);
     }
-
-    /* --- CTA --- */
-    .cta {
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      height: 50vh;
+      overflow: hidden;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: #fff;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+    .gallery-overlay span {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+    }
+    .process-section {
       padding: 6rem 10vw;
       background: var(--ai-teal);
+      color: #fff;
+      position: relative;
+    }
+    .process-header {
+      text-align: center;
+      margin-bottom: 5rem;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .process-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 500;
+    }
+    .process-steps {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .process-steps:before {
+      content: '';
+      position: absolute;
+      top: 2rem;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+    }
+    .step {
+      flex: 1;
+      text-align: center;
+      padding: 0 1rem;
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+    }
+    .step-circle {
+      width: 4rem;
+      height: 4rem;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      background: var(--ai-teal);
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+    .step:hover .step-circle {
+      border-color: #fff;
+      background: rgba(255,255,255,0.2);
+    }
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .step-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+    .cta-visual {
+      position: relative;
+      padding: 10rem 10vw;
+      background-image: linear-gradient(rgba(10,30,30,0.9), rgba(10,30,30,0.95)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       color: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 2rem;
+      gap: 3rem;
       flex-wrap: wrap;
     }
-    .cta h2 {
+    .cta-content h2 {
       font-family: var(--font-serif);
-      font-size: clamp(2rem, 3.6vw, 3.2rem);
+      font-size: clamp(2.5rem, 4vw, 4rem);
       font-weight: 500;
-      line-height: 1.05;
-      max-width: 820px;
+      line-height: 1.1;
+      margin-bottom: 1rem;
     }
-    .cta a {
-      border: 1px solid rgba(255,255,255,0.38);
-      padding: 14px 22px;
+    .cta-content p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 500px;
+    }
+    .cta-btn {
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 18px 32px;
       font-size: 0.9rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      color: #fff;
     }
-    .cta a:hover {
-      background: rgba(255,255,255,0.08);
+    .cta-btn:hover {
+      background: rgba(255,255,255,0.2);
       transform: translateY(-3px);
+      border-color: #fff;
     }
-
-    /* --- PRELOADER --- */
     .preloader {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: #fff; z-index: 9999; display: flex;
       justify-content: center; align-items: center; transition: opacity 0.8s ease;
     }
-
-    /* --- ANIM --- */
     .fade-in-up { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-      .nav-bar { padding: 1.5rem; }
-      .vertical-hero { padding: 0 1.5rem; min-height: 70vh; }
-      .section, .quote-section, .cta { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .background-line { display: none; }
-      .section-header { flex-direction: column; align-items: flex-start; }
-      .feature-grid { grid-template-columns: 1fr; }
-      .two-column { grid-template-columns: 1fr; gap: 2rem; }
-      .process-steps { grid-template-columns: 1fr; }
+    @media (max-width: 968px) {
+      .nav-bar { padding: 1.5rem; mix-blend-mode: normal; }
+      .nav-logo, .nav-back { color: var(--baradia-black); }
+      .hero-visual { padding: 0 1.5rem 4rem; height: 90vh; }
+      .split-vision { grid-template-columns: 1fr; }
+      .split-image { height: 50vh; }
+      .platform-grid { grid-template-columns: 1fr; }
+      .laptop-mockup { right: 10px; width: 50%; bottom: -30px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-strip { grid-template-columns: repeat(2, 1fr); height: auto; }
+      .gallery-item { height: 30vh; }
+      .process-steps { flex-direction: column; gap: 3rem; }
+      .process-steps:before { display: none; }
+      .cta-visual { padding: 6rem 1.5rem; flex-direction: column; text-align: center; }
+      .section { padding: 4rem 1.5rem; }
     }
   </style>
 </head>
-
 <body>
   <div class="preloader" id="preloader">
     <div style="font-family: 'Arimo'; font-weight: 700; letter-spacing: 0.2em; color: var(--ai-teal);">
@@ -369,184 +528,181 @@
   </div>
 
   <div class="nav-bar">
-    <a href="#" class="nav-back" id="backButton">← Go Back</a>
-    <a href="index.html" class="nav-logo">BARADIA</a>
+    <a class="nav-back" href="#" id="backButton">← Go Back</a>
+    <a class="nav-logo" href="index.html">BARADIA</a>
   </div>
 
-  <div class="background-line"></div>
-
-  <section class="vertical-hero">
-    <h1 class="anim-target" style="transition-delay: 0.2s;">
-      AI VENTURES
-    </h1>
-    
-    <div class="vertical-subtitle anim-target" style="transition-delay: 0.3s;">
-      Where Human Intelligence Meets Artificial Intelligence
-    </div>
-    
-    <div class="hero-description anim-target" style="transition-delay: 0.4s;">
-      The technology innovation arm of Baradia Group, committed to shaping the future through 
-      intelligent design, data-driven strategy, and ethical AI applications.
+  <section class="hero-visual">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="hero-label anim-target" style="transition-delay: 0.2s;">Intelligent Systems</span>
+      <h1 class="hero-title anim-target" style="transition-delay: 0.3s;">
+        Human +<br/>Machine
+      </h1>
+      <p class="hero-subtitle anim-target" style="transition-delay: 0.4s;">
+        Ethical AI that amplifies creativity and intelligence — enabling businesses to automate smarter and scale sustainably.
+      </p>
     </div>
   </section>
 
-  <section class="section">
-    <div class="section-header anim-target" style="transition-delay: 0.15s;">
-      <div class="section-title">Vision & Mission</div>
-      <div class="section-desc">
-        We help businesses worldwide harness the power of Artificial Intelligence — to 
-        automate smarter, scale faster, and grow sustainably.
-      </div>
+  <section class="story-strip">
+    <div class="story-strip-bg"></div>
+    <div class="story-text">
+      <p class="anim-target" style="transition-delay: 0.2s;">
+        "We design systems that serve humanity, not the other way around."
+      </p>
     </div>
+  </section>
 
-    <div class="two-column">
-      <div class="column anim-target" style="transition-delay: 0.2s;">
-        <div class="content-block-title">Vision</div>
-        <div class="content-block-text">
-          To create a world where AI empowers human intelligence — enabling global 
-          enterprises, entrepreneurs, and communities to work with purpose, precision, and progress.
-        </div>
+  <section class="split-vision">
+    <div class="split-image">
+      <img alt="AI" class="anim-target" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&amp;w=2600&amp;auto=format&amp;fit=crop" style="transition-delay: 0.1s;"/>
+    </div>
+    <div class="split-content anim-target" style="transition-delay: 0.3s;">
+      <span class="split-label">Our Philosophy</span>
+      <h2 class="split-title">Intelligence<br/>with Intention</h2>
+      <p class="split-text">
+        Technology must amplify human potential, not replace it. We blend strategy, design, and engineering into seamless experiences where insight meets execution.
+      </p>
+    </div>
+  </section>
+
+  <section class="platform-section">
+    <div class="platform-grid">
+      <div class="platform-content anim-target" style="transition-delay: 0.2s;">
+        <span class="platform-label">The Platform</span>
+        <h2 class="platform-title">Adaptive<br/>Intelligence</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--muted); margin-bottom: 2rem;">
+          Custom AI solutions that evolve with your data — from predictive analytics to automated workflows and creative intelligence.
+        </p>
+        <ul class="platform-features">
+          <li>Predictive Analytics</li>
+          <li>Process Automation</li>
+          <li>Natural Language Processing</li>
+          <li>Computer Vision & Design</li>
+        </ul>
       </div>
       
-      <div class="column anim-target" style="transition-delay: 0.3s;">
-        <div class="content-block-title">Mission</div>
-        <div class="content-block-text">
-          To design and deploy accessible, ethical, and intelligent systems that simplify 
-          business complexities, strengthen decision-making, and inspire innovation across industries.
+      <div class="device-showcase anim-target" style="transition-delay: 0.4s;">
+        <div class="monitor-mockup">
+          <img alt="AI Dashboard" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&amp;w=2670&amp;auto=format&amp;fit=crop"/>
+        </div>
+        <div class="laptop-mockup">
+          <img alt="Interface" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&amp;w=2426&amp;auto=format&amp;fit=crop"/>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" style="background-color: var(--ai-light);">
-    <div class="section-header anim-target" style="transition-delay: 0.15s;">
-      <div class="section-title">Our Philosophy</div>
+  <section class="gallery-strip">
+    <div class="gallery-item anim-target" style="transition-delay: 0.1s;">
+      <img alt="Automation" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&amp;w=1000&amp;auto=format&amp;fit=crop"/>
+      <div class="gallery-overlay"><span>Automation</span></div>
     </div>
+    <div class="gallery-item anim-target" style="transition-delay: 0.2s;">
+      <img alt="Data" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&amp;w=1000&amp;auto=format&amp;fit=crop"/>
+      <div class="gallery-overlay"><span>Data Intelligence</span></div>
+    </div>
+    <div class="gallery-item anim-target" style="transition-delay: 0.3s;">
+      <img alt="Creative" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&amp;w=1000&amp;auto=format&amp;fit=crop"/>
+      <div class="gallery-overlay"><span>Creative AI</span></div>
+    </div>
+    <div class="gallery-item anim-target" style="transition-delay: 0.4s;">
+      <img alt="Strategy" src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&amp;w=1000&amp;auto=format&amp;fit=crop"/>
+      <div class="gallery-overlay"><span>Strategy</span></div>
+    </div>
+  </section>
 
-    <div class="content-block anim-target" style="transition-delay: 0.25s;">
-      <div class="content-block-text">
-        At AI Ventures, we believe that technology must serve humanity, not the other way around. 
-        Our approach blends strategy, design, and engineering into one seamless experience — 
-        where insight meets execution, and intelligence becomes impact.
+  <section class="section" style="padding: 0; border: none;">
+    <div class="section-header" style="padding: 6rem 10vw 3rem;">
+      <div class="section-title">Our Solutions</div>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card anim-target" style="transition-delay: 0.1s;">
+        <div class="service-number">01</div>
+        <h3 class="service-title">Digital Platforms</h3>
+        <p class="service-text">AI-powered websites and apps that adapt to user behavior in real-time.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.2s;">
+        <div class="service-number">02</div>
+        <h3 class="service-title">Automation</h3>
+        <p class="service-text">Smart workflows that streamline operations and improve accuracy.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.3s;">
+        <div class="service-number">03</div>
+        <h3 class="service-title">Predictive Analytics</h3>
+        <p class="service-text">Actionable insights from complex data patterns for confident decisions.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.4s;">
+        <div class="service-number">04</div>
+        <h3 class="service-title">Brand Intelligence</h3>
+        <p class="service-text">AI tools ensuring consistency and originality across all touchpoints.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.5s;">
+        <div class="service-number">05</div>
+        <h3 class="service-title">Custom Solutions</h3>
+        <p class="service-text">Tailor-made platforms solving specific sector challenges.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.6s;">
+        <div class="service-number">06</div>
+        <h3 class="service-title">Ethics & Safety</h3>
+        <p class="service-text">Privacy-first systems with sustainable, responsible AI practices.</p>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="section-header anim-target" style="transition-delay: 0.15s;">
-      <div class="section-title">What We Do</div>
-      <div class="section-desc">
-        We partner with forward-thinking organizations to deliver transformative AI solutions.
-      </div>
+  <section class="process-section">
+    <div class="process-header anim-target" style="transition-delay: 0.1s;">
+      <h2 class="process-title">Our Global Process</h2>
     </div>
-
-    <div class="feature-grid">
-      <div class="feature-card anim-target" style="transition-delay: 0.15s;">
-        <div class="feature-icon">🌐</div>
-        <div class="feature-title">AI-Powered Digital Platforms</div>
-        <div class="feature-text">
-          Websites, portals, and apps that adapt to user behavior and drive engagement through intelligent interfaces.
-        </div>
-      </div>
-
-      <div class="feature-card anim-target" style="transition-delay: 0.25s;">
-        <div class="feature-icon">⚙️</div>
-        <div class="feature-title">Business Process Automation</div>
-        <div class="feature-text">
-          Smart systems that streamline operations, improve accuracy, and save time through intelligent workflows.
-        </div>
-      </div>
-
-      <div class="feature-card anim-target" style="transition-delay: 0.35s;">
-        <div class="feature-icon">📊</div>
-        <div class="feature-title">Data & Predictive Intelligence</div>
-        <div class="feature-text">
-          Actionable insights that help leaders make confident, informed decisions based on data patterns.
-        </div>
-      </div>
-
-      <div class="feature-card anim-target" style="transition-delay: 0.45s;">
-        <div class="feature-icon">🎨</div>
-        <div class="feature-title">AI for Branding & Design</div>
-        <div class="feature-text">
-          Intelligent creative tools that ensure consistency and originality across every brand touchpoint.
-        </div>
-      </div>
-
-      <div class="feature-card anim-target" style="transition-delay: 0.55s;">
-        <div class="feature-icon">🔧</div>
-        <div class="feature-title">Custom AI Solutions</div>
-        <div class="feature-text">
-          Tailor-made platforms that solve specific challenges unique to your business and sector.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="quote-section anim-target" style="transition-delay: 0.15s;">
-    <p>
-      "We design systems that amplify creativity and intelligence, not replace them."
-    </p>
-  </section>
-
-  <section class="section" style="background-color: var(--ai-light);">
-    <div class="section-header anim-target" style="transition-delay: 0.15s;">
-      <div class="section-title">Why Global Clients Trust Us</div>
-    </div>
-
-    <ul class="highlight-list anim-target" style="transition-delay: 0.25s;">
-      <li><strong>Global Mindset, Local Sensitivity:</strong> We work across borders with an understanding of diverse markets and cultures.</li>
-      <li><strong>Clarity and Transparency:</strong> We simplify AI into clear outcomes and measurable milestones.</li>
-      <li><strong>Human + Machine Synergy:</strong> We design systems that amplify creativity and intelligence, not replace them.</li>
-      <li><strong>Ethical AI Practices:</strong> We prioritize privacy, sustainability, and long-term value.</li>
-      <li><strong>Partnership for Growth:</strong> Our relationship doesn't end at delivery — we stay, evolve, and scale with you.</li>
-    </ul>
-  </section>
-
-  <section class="section">
-    <div class="section-header anim-target" style="transition-delay: 0.15s;">
-      <div class="section-title">Our Global Process</div>
-    </div>
-
+    
     <div class="process-steps">
-      <div class="process-step anim-target" style="transition-delay: 0.15s;">
-        <div class="step-number">1</div>
-        <div class="step-title">Discover</div>
-        <div class="step-desc">Deep understanding of your goals, market, and data</div>
+      <div class="step anim-target" style="transition-delay: 0.2s;">
+        <div class="step-circle">1</div>
+        <h3 class="step-title">Discover</h3>
+        <p class="step-text">Deep understanding of goals</p>
       </div>
-
-      <div class="process-step anim-target" style="transition-delay: 0.25s;">
-        <div class="step-number">2</div>
-        <div class="step-title">Design</div>
-        <div class="step-desc">Build frameworks aligned with your business strategy</div>
+      
+      <div class="step anim-target" style="transition-delay: 0.3s;">
+        <div class="step-circle">2</div>
+        <h3 class="step-title">Design</h3>
+        <p class="step-text">Strategic frameworks</p>
       </div>
-
-      <div class="process-step anim-target" style="transition-delay: 0.35s;">
-        <div class="step-number">3</div>
-        <div class="step-title">Develop</div>
-        <div class="step-desc">Engineer scalable, secure, and adaptive solutions</div>
+      
+      <div class="step anim-target" style="transition-delay: 0.4s;">
+        <div class="step-circle">3</div>
+        <h3 class="step-title">Develop</h3>
+        <p class="step-text">Scalable engineering</p>
       </div>
-
-      <div class="process-step anim-target" style="transition-delay: 0.45s;">
-        <div class="step-number">4</div>
-        <div class="step-title">Deploy</div>
-        <div class="step-desc">Launch and integrate AI seamlessly within your ecosystem</div>
+      
+      <div class="step anim-target" style="transition-delay: 0.5s;">
+        <div class="step-circle">4</div>
+        <h3 class="step-title">Deploy</h3>
+        <p class="step-text">Seamless integration</p>
       </div>
-
-      <div class="process-step anim-target" style="transition-delay: 0.55s;">
-        <div class="step-number">5</div>
-        <div class="step-title">Evolve</div>
-        <div class="step-desc">Continuous optimization as your data and goals evolve</div>
+      
+      <div class="step anim-target" style="transition-delay: 0.6s;">
+        <div class="step-circle">5</div>
+        <h3 class="step-title">Evolve</h3>
+        <p class="step-text">Continuous optimization</p>
       </div>
     </div>
   </section>
 
-  <section class="cta">
-    <h2>
-      Collaborate With AI Ventures
-      <br/>Let's build your next intelligent system — together.
-    </h2>
-    <a href="mailto:sumit@bardiagroup.com?subject=AI%20Ventures%20Inquiry&body=Hello%20Baradia%20Team,%0A%0AI%20would%20like%20to%20discuss%20AI%20solutions%20with%20AI%20Ventures.%0A%0A[Please%20provide%20details%20about%20your%20business%20needs]">Start Conversation <span>→</span></a>
+  <section class="cta-visual">
+    <div class="cta-content anim-target" style="transition-delay: 0.2s;">
+      <h2>Build Your Intelligent Future</h2>
+      <p>Let's create AI systems that amplify your human potential.</p>
+    </div>
+    <a class="cta-btn anim-target" href="mailto:sumit@bardiagroup.com?subject=AI%20Ventures%20Inquiry" style="transition-delay: 0.3s;">
+      Start Conversation <span>→</span>
+    </a>
   </section>
 
   <script>
@@ -570,7 +726,7 @@
             obs.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12 });
+      }, { threshold: 0.1 });
 
       document.querySelectorAll('.anim-target').forEach(t => observer.observe(t));
     };
