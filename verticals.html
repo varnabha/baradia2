@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
   <script type="text/javascript">
     WebFont.load({ google: { families: ["Arimo:regular,700","Playfair Display:regular,500,700"] }});
@@ -38,452 +38,405 @@
     }
     a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-    /* --- NAV --- */
+    /* --- NAVIGATION --- */
     .nav-bar {
       position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 3rem;
       display: flex; justify-content: space-between; align-items: center;
-      z-index: 100; pointer-events: none;
+      z-index: 100; pointer-events: none; mix-blend-mode: difference;
     }
     .nav-logo {
       pointer-events: auto;
       font-family: var(--font-main); font-size: 1.8rem; font-weight: 700;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--baradia-black);
+      letter-spacing: 0.25em; text-transform: uppercase; color: #fff;
     }
     .nav-back {
       pointer-events: auto;
       font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase;
       display: flex; align-items: center; gap: 8px;
-      opacity: 0.7; transition: opacity 0.3s;
+      opacity: 0.7; transition: opacity 0.3s; color: #fff;
     }
     .nav-back:hover { opacity: 1; }
 
     /* --- HERO --- */
-    .hero {
-      position: relative; min-height: 80vh; display: flex; flex-direction: column;
-      justify-content: center; padding: 0 10vw; margin-top: 80px;
+    .hero-visual {
+      position: relative;
+      height: 85vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 10vw 6rem;
+      overflow: hidden;
     }
-
-    .hero h1 {
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+      transform: scale(1.1);
+      animation: slowZoom 25s ease-out forwards;
+    }
+    @keyframes slowZoom {
+      to { transform: scale(1); }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+    .hero-label {
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1.5rem;
+      display: block;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(3rem, 6vw, 6rem);
-      line-height: 1.1;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1;
       font-weight: 500;
-      margin-bottom: 2rem;
-      opacity: 0; transform: translateY(30px);
+      color: #fff;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      line-height: 1.4;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      max-width: 600px;
+      font-style: italic;
+      opacity: 0;
+      transform: translateY(30px);
     }
 
-    .hero h1 span {
+    /* --- VERTICALS GRID --- */
+    .verticals-showcase {
+      padding: 0;
+      position: relative;
+    }
+    .verticals-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid var(--line);
+    }
+    .vertical-card {
+      position: relative;
+      height: 70vh;
+      overflow: hidden;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+      display: flex;
+      align-items: flex-end;
+      padding: 3rem;
+      text-decoration: none;
+    }
+    .vertical-card:nth-child(2n) {
+      border-right: none;
+    }
+    .vertical-card:nth-last-child(1):nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+
+    /* Card Background Images */
+    .vertical-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 1.2s ease;
+      z-index: 0;
+    }
+    .vertical-card:hover::before {
+      transform: scale(1.1);
+    }
+    
+    /* Specific backgrounds for each vertical */
+    .card-indesign::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2600&auto=format&fit=crop');
+    }
+    .card-branded::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2600&auto=format&fit=crop');
+    }
+    .card-infield::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2600&auto=format&fit=crop');
+    }
+    .card-invest::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2600&auto=format&fit=crop');
+    }
+    .card-ai::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2600&auto=format&fit=crop');
+    }
+
+    /* Color overlays on hover */
+    .vertical-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+      mix-blend-mode: multiply;
+    }
+    .card-indesign:hover::after { background: var(--indesign-brown); opacity: 0.8; }
+    .card-branded:hover::after { background: var(--branded-purple); opacity: 0.8; }
+    .card-infield:hover::after { background: var(--field-green); opacity: 0.8; }
+    .card-invest:hover::after { background: var(--invest-blue); opacity: 0.8; }
+    .card-ai:hover::after { background: var(--ai-teal); opacity: 0.8; }
+
+    .vertical-content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      transform: translateY(20px);
+      transition: transform 0.4s ease;
+    }
+    .vertical-card:hover .vertical-content {
+      transform: translateY(0);
+    }
+    .vertical-number {
+      font-family: var(--font-serif);
+      font-size: 6rem;
+      line-height: 1;
+      opacity: 0.3;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .vertical-title {
+      font-family: var(--font-main);
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .vertical-tagline {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease 0.1s;
+      max-width: 400px;
+    }
+    .vertical-card:hover .vertical-tagline {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .vertical-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.4s ease 0.15s;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      padding-bottom: 4px;
+    }
+    .vertical-card:hover .vertical-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* --- PHILOSOPHY STRIP --- */
+    .philosophy-strip {
+      padding: 10rem 10vw;
+      background: var(--bg-color);
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+    .philosophy-text {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      line-height: 1.2;
+      max-width: 900px;
+      margin: 0 auto;
+      color: var(--baradia-black);
+      font-weight: 500;
+    }
+    .philosophy-text span {
       color: var(--baradia-red);
       font-style: italic;
     }
 
-    .hero-subtext {
-      font-family: var(--font-main);
-      font-size: 1.05rem;
-      line-height: 1.7;
-      max-width: 680px;
-      border-left: 2px solid var(--baradia-red);
-      padding-left: 1.5rem;
-      margin-left: 5px;
-      color: var(--muted);
-      opacity: 0; transform: translateY(30px);
-    }
-
-    /* --- GRID --- */
-    .verticals-container { 
-      padding: 2rem 5vw 8rem 5vw; 
+    /* --- CTA --- */
+    .cta-visual {
       position: relative;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-      gap: 3rem 2rem;
-      max-width: 1600px;
-      margin: 0 auto;
-    }
-
-    .card {
-      position: relative;
-      border: 1px solid rgba(0,0,0,0.08);
-      border-top: 4px solid var(--baradia-red);
-      padding: 2.5rem 2.2rem;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      background: rgba(255,255,255,0.7);
-      cursor: pointer;
-    }
-    .card:hover { 
-      transform: translateY(-8px); 
-      box-shadow: 0 25px 80px rgba(0,0,0,0.08);
-      border-color: transparent;
-    }
-
-    .card-number {
-      position: absolute;
-      top: -20px;
-      right: 2.2rem;
-      font-family: var(--font-serif);
-      font-size: 4.5rem;
-      color: var(--baradia-red);
-      opacity: 0.15;
-      line-height: 1;
-      font-weight: 700;
-      z-index: 0;
-    }
-
-    .card-header {
+      padding: 8rem 10vw;
+      background: var(--baradia-black);
+      color: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 2rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .card-title {
-      font-family: var(--font-main);
-      font-size: 1.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 700;
-    }
-
-    .card-arrow {
-      font-size: 1.2rem;
-      color: var(--muted);
-      transition: transform 0.3s, color 0.3s;
-    }
-    .card:hover .card-arrow {
-      transform: translateX(6px);
-      color: var(--baradia-red);
-    }
-
-    .card-body { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 1.6rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .vertical-type {
-      display: inline-block;
-      padding: 4px 12px;
-      background: rgba(194, 21, 47, 0.08);
-      color: var(--baradia-red);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      margin-bottom: 1rem;
-    }
-
-    .vertical-description {
-      font-family: var(--font-serif);
-      font-size: 1.4rem;
-      line-height: 1.4;
-      color: rgba(0,0,0,0.9);
-      margin-bottom: 1rem;
-    }
-
-    .vertical-tags {
-      display: flex;
+      gap: 3rem;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1rem;
     }
-
-    .tag {
-      padding: 4px 10px;
-      background: rgba(0,0,0,0.05);
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-      border-radius: 2px;
-    }
-
-    /* Color-coded borders for each vertical */
-    .vertical-1 { border-top-color: var(--indesign-brown); }
-    .vertical-2 { border-top-color: var(--branded-purple); }
-    .vertical-3 { border-top-color: var(--field-green); }
-    .vertical-4 { border-top-color: var(--invest-blue); }
-    .vertical-5 { border-top-color: var(--ai-teal); }
-
-    .vertical-1 .vertical-type { background: rgba(178, 143, 120, 0.1); color: var(--indesign-brown); }
-    .vertical-2 .vertical-type { background: rgba(138, 75, 175, 0.1); color: var(--branded-purple); }
-    .vertical-3 .vertical-type { background: rgba(74, 140, 94, 0.1); color: var(--field-green); }
-    .vertical-4 .vertical-type { background: rgba(42, 92, 154, 0.1); color: var(--invest-blue); }
-    .vertical-5 .vertical-type { background: rgba(0, 168, 168, 0.1); color: var(--ai-teal); }
-
-    /* --- FOOT CTA --- */
-    .end-strip {
-      padding: 8rem 10vw;
-      background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
-      border-top: 1px solid var(--line);
-      text-align: center;
-    }
-
-    .end-strip h2 {
+    .cta-content h2 {
       font-family: var(--font-serif);
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-size: clamp(2rem, 3vw, 3rem);
       font-weight: 500;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
     }
-    .end-strip p {
-      color: var(--muted);
-      line-height: 1.75;
-      max-width: 680px;
-      margin: 0 auto 2.5rem;
+    .cta-content p {
       font-size: 1.1rem;
+      opacity: 0.7;
+      max-width: 500px;
+      line-height: 1.6;
     }
-
-    .button-group {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
+    .cta-btn {
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 16px 28px;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: var(--baradia-red);
-      color: white;
-      padding: 14px 24px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.85rem;
-      border: 1px solid var(--baradia-red);
-    }
-    .btn-primary:hover {
+      gap: 12px;
       background: transparent;
-      color: var(--baradia-red);
+      color: #fff;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    .cta-btn:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #fff;
       transform: translateY(-3px);
     }
 
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid rgba(0,0,0,0.18);
-      padding: 14px 24px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.85rem;
-    }
-    .btn-secondary:hover {
-      border-color: rgba(0,0,0,0.35);
-      transform: translateY(-3px);
-    }
-
-    /* --- UTILS --- */
-    .fade-in-up { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
-    .background-line {
-      position: fixed; right: 15vw; top: 0; bottom: 0;
-      width: 1px; background: rgba(0,0,0,0.05); z-index: -1;
-    }
-
+    /* --- PRELOADER --- */
     .preloader {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: #fff; z-index: 9999; display: flex;
       justify-content: center; align-items: center; transition: opacity 0.8s ease;
     }
+    .fade-in-up { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
     /* Mobile */
-    @media (max-width: 768px) {
-      .nav-bar { padding: 1.5rem; }
-      .hero { padding: 0 1.5rem; min-height: 60vh; }
-      .grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .background-line { display: none; }
-      .end-strip { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .button-group { flex-direction: column; align-items: center; }
-      .card { padding: 2rem 1.8rem; }
-    }
-
-    @media (max-width: 480px) {
-      .nav-back span { display: none; }
-      .nav-back::before { content: "← Back"; }
+    @media (max-width: 968px) {
+      .nav-bar { padding: 1.5rem; mix-blend-mode: normal; }
+      .nav-logo, .nav-back { color: var(--baradia-black); }
+      .hero-visual { padding: 0 1.5rem 4rem; height: 80vh; }
+      .verticals-grid { grid-template-columns: 1fr; }
+      .vertical-card { height: 60vh; border-right: none; }
+      .vertical-tagline { opacity: 1; transform: translateY(0); }
+      .vertical-arrow { opacity: 1; transform: translateX(0); }
+      .cta-visual { padding: 5rem 1.5rem; flex-direction: column; text-align: center; }
+      .philosophy-strip { padding: 6rem 1.5rem; }
     }
   </style>
 </head>
-
 <body>
   <div class="preloader" id="preloader">
     <div style="font-family: 'Arimo'; font-weight: 700; letter-spacing: 0.2em; color: var(--baradia-red);">
-      BARADIA VERTICALS
+      BARADIA GROUP
     </div>
   </div>
 
   <div class="nav-bar">
-    <a href="#" class="nav-back" id="backButton"><span>← Back to Businesses</span></a>
-    <a href="index.html" class="nav-logo">BARADIA</a>
+    <a class="nav-back" href="businesses.html" id="backButton">← Back</a>
+    <a class="nav-logo" href="index.html">BARADIA</a>
   </div>
 
-  <div class="background-line"></div>
-
-  <section class="hero">
-    <h1 class="anim-target" style="transition-delay: 0.2s;">
-      Our Verticals:<br>
-      <span>Built to Last.</span>
-    </h1>
-    <div class="hero-subtext anim-target" style="transition-delay: 0.4s;">
-      Distinct ventures, one standard of work — built with clear systems, structured execution,
-      and a long-term commitment to quality. Each vertical operates independently yet shares
-      the Baradia DNA of precision and purpose.
+  <section class="hero-visual">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="hero-label anim-target" style="transition-delay: 0.2s;">Our Ecosystem</span>
+      <h1 class="hero-title anim-target" style="transition-delay: 0.3s;">
+        Five Verticals.<br>One Vision.
+      </h1>
+      <p class="hero-subtitle anim-target" style="transition-delay: 0.4s;">
+        Distinct ventures built with clear systems, structured execution, and an unwavering commitment to quality.
+      </p>
     </div>
   </section>
 
-  <section class="verticals-container">
-    <div class="grid">
-
+  <section class="verticals-showcase">
+    <div class="verticals-grid">
+      
       <!-- The InDesign -->
-      <a href="verticals/i.html" class="card vertical-1 anim-target" style="transition-delay: 0.1s;">
-        <div class="card-number">01</div>
-        <div class="card-header">
-          <div class="card-title">The InDesign</div>
-          <div class="card-arrow">→</div>
-        </div>
-        <div class="card-body">
-          <span class="vertical-type">Architecture & Interior Design</span>
-          <div class="vertical-description">
-            Designing spaces that tell stories — where form meets function with timeless elegance.
-          </div>
-          <p style="color: var(--muted); line-height: 1.6; font-size: 0.95rem;">
-            From residences to hospitality, we create environments that nurture emotions, 
-            balance energy, and endure through generations.
-          </p>
-          <div class="vertical-tags">
-            <span class="tag">Architecture</span>
-            <span class="tag">Interior Design</span>
-            <span class="tag">Spatial Planning</span>
-            <span class="tag">Vastu Aligned</span>
-          </div>
+      <a href="verticals/indesign.html" class="vertical-card card-indesign anim-target" style="transition-delay: 0.1s;">
+        <div class="vertical-content">
+          <div class="vertical-number">01</div>
+          <div class="vertical-title">The InDesign</div>
+          <div class="vertical-tagline">Architecture and interiors where form meets timeless elegance.</div>
+          <div class="vertical-arrow">Explore →</div>
         </div>
       </a>
 
       <!-- InDesign Branded -->
-      <a href="verticals/ib.html" class="card vertical-2 anim-target" style="transition-delay: 0.2s;">
-        <div class="card-number">02</div>
-        <div class="card-header">
-          <div class="card-title">InDesign Branded</div>
-          <div class="card-arrow">→</div>
-        </div>
-        <div class="card-body">
-          <span class="vertical-type">Lifestyle & E-commerce</span>
-          <div class="vertical-description">
-            Curating authenticity — connecting discerning buyers with quality-verified creators.
-          </div>
-          <p style="color: var(--muted); line-height: 1.6; font-size: 0.95rem;">
-            A global marketplace for design-led brands, where every product carries a story 
-            of craftsmanship and conscious creation.
-          </p>
-          <div class="vertical-tags">
-            <span class="tag">E-commerce</span>
-            <span class="tag">Brand Curation</span>
-            <span class="tag">Sustainable Products</span>
-            <span class="tag">Global Marketplace</span>
-          </div>
+      <a href="verticals/indesignbranded.html" class="vertical-card card-branded anim-target" style="transition-delay: 0.2s;">
+        <div class="vertical-content">
+          <div class="vertical-number">02</div>
+          <div class="vertical-title">InDesign Branded</div>
+          <div class="vertical-tagline">Curating authentic design-led brands for conscious consumers.</div>
+          <div class="vertical-arrow">Explore →</div>
         </div>
       </a>
 
       <!-- The InField -->
-      <a href="verticals/if.html" class="card vertical-3 anim-target" style="transition-delay: 0.3s;">
-        <div class="card-number">03</div>
-        <div class="card-header">
-          <div class="card-title">The InField</div>
-          <div class="card-arrow">→</div>
-        </div>
-        <div class="card-body">
-          <span class="vertical-type">Agroecology & Farm Design</span>
-          <div class="vertical-description">
-            Regenerative agriculture that works with nature — not against it.
-          </div>
-          <p style="color: var(--muted); line-height: 1.6; font-size: 0.95rem;">
-            Designing productive landscapes that restore soil health, conserve water, 
-            and create self-sustaining ecosystems for future generations.
-          </p>
-          <div class="vertical-tags">
-            <span class="tag">Regenerative Agriculture</span>
-            <span class="tag">Farm Planning</span>
-            <span class="tag">Water Management</span>
-            <span class="tag">Sustainability</span>
-          </div>
+      <a href="verticals/infield.html" class="vertical-card card-infield anim-target" style="transition-delay: 0.3s;">
+        <div class="vertical-content">
+          <div class="vertical-number">03</div>
+          <div class="vertical-title">The InField</div>
+          <div class="vertical-tagline">Regenerative agriculture working with nature's intelligence.</div>
+          <div class="vertical-arrow">Explore →</div>
         </div>
       </a>
 
       <!-- The Invest -->
-      <a href="verticals/ii.html" class="card vertical-4 anim-target" style="transition-delay: 0.4s;">
-        <div class="card-number">04</div>
-        <div class="card-header">
-          <div class="card-title">The Invest</div>
-          <div class="card-arrow">→</div>
-        </div>
-        <div class="card-body">
-          <span class="vertical-type">Financial Strategy</span>
-          <div class="vertical-description">
-            Intelligent wealth creation — balancing profitability with purpose.
-          </div>
-          <p style="color: var(--muted); line-height: 1.6; font-size: 0.95rem;">
-            Guiding capital toward meaningful growth with clarity, responsibility, 
-            and long-term vision across diverse investment portfolios.
-          </p>
-          <div class="vertical-tags">
-            <span class="tag">Wealth Management</span>
-            <span class="tag">Private Equity</span>
-            <span class="tag">Sustainable Investing</span>
-            <span class="tag">Global Markets</span>
-          </div>
+      <a href="verticals/invest.html" class="vertical-card card-invest anim-target" style="transition-delay: 0.4s;">
+        <div class="vertical-content">
+          <div class="vertical-number">04</div>
+          <div class="vertical-title">The Invest</div>
+          <div class="vertical-tagline">Wealth creation balancing profitability with purpose.</div>
+          <div class="vertical-arrow">Explore →</div>
         </div>
       </a>
 
       <!-- AI Ventures -->
-      <a href="verticals/ai.html" class="card vertical-5 anim-target" style="transition-delay: 0.5s;">
-        <div class="card-number">05</div>
-        <div class="card-header">
-          <div class="card-title">AI Ventures</div>
-          <div class="card-arrow">→</div>
-        </div>
-        <div class="card-body">
-          <span class="vertical-type">Technology Innovation</span>
-          <div class="vertical-description">
-            Where human intelligence meets artificial intelligence for real-world impact.
-          </div>
-          <p style="color: var(--muted); line-height: 1.6; font-size: 0.95rem;">
-            Building accessible, ethical AI systems that simplify business complexities 
-            and drive innovation across industries.
-          </p>
-          <div class="vertical-tags">
-            <span class="tag">AI Solutions</span>
-            <span class="tag">Digital Transformation</span>
-            <span class="tag">Process Automation</span>
-            <span class="tag">Predictive Intelligence</span>
-          </div>
+      <a href="verticals/aiventure.html" class="vertical-card card-ai anim-target" style="transition-delay: 0.5s;">
+        <div class="vertical-content">
+          <div class="vertical-number">05</div>
+          <div class="vertical-title">AI Ventures</div>
+          <div class="vertical-tagline">Human intelligence amplified by ethical artificial intelligence.</div>
+          <div class="vertical-arrow">Explore →</div>
         </div>
       </a>
 
     </div>
   </section>
 
-  <section class="end-strip">
-    <h2>One group. Multiple verticals.<br/>Same obsession with quality.</h2>
-    <p>
-      Baradia is built on a single belief: if we commit to something,
-      we build it properly — with people, process, accountability and standards.
-      Each vertical operates independently yet shares our core DNA of precision,
-      purpose, and long-term thinking.
+  <section class="philosophy-strip">
+    <p class="philosophy-text anim-target" style="transition-delay: 0.2s;">
+      One group. Multiple verticals. <span>Same obsession with quality.</span>
     </p>
-    <div class="button-group">
-      <a href="businesses.html" class="btn-primary">Read Our Philosophy <span>→</span></a>
-      <a href="mailto:sumit@bardiagroup.com?subject=Baradia%20Group%20Inquiry" class="btn-secondary">Get in Touch <span>↗</span></a>
+  </section>
+
+  <section class="cta-visual">
+    <div class="cta-content anim-target" style="transition-delay: 0.2s;">
+      <h2>Built to Last</h2>
+      <p>If we commit to something, we build it properly — with people, process, accountability and standards.</p>
     </div>
+    <a class="cta-btn anim-target" href="mailto:sumit@bardiagroup.com?subject=Baradia%20Group%20Inquiry" style="transition-delay: 0.3s;">
+      Start Conversation <span>→</span>
+    </a>
   </section>
 
   <script>
@@ -494,7 +447,6 @@
         setTimeout(() => { 
           preloader.style.display = 'none'; 
           initObserver(); 
-          initNavigation(); 
         }, 800);
       }, 800);
     });
@@ -507,22 +459,9 @@
             obs.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12 });
+      }, { threshold: 0.1 });
 
       document.querySelectorAll('.anim-target').forEach(t => observer.observe(t));
-    };
-
-    const initNavigation = () => {
-      const backButton = document.getElementById('backButton');
-      
-      backButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (document.referrer && document.referrer.includes(window.location.hostname)) {
-          window.history.back();
-        } else {
-          window.location.href = 'businesses.html';
-        }
-      });
     };
   </script>
 </body>
