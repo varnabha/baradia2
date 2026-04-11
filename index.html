@@ -1344,6 +1344,136 @@ img.preloader__emblem {
   }
 </style>
 
+<!-- SCROLL BAR ON RIGHT EDGE OF NAV BAR -->
+<style>
+  .nav-scroll-track {
+    position: fixed;
+    left: calc(var(--nav-bar-width, 60px) - 4px);
+    top: 0;
+    width: 4px;
+    height: 100vh;
+    background: rgba(194, 21, 47, 0.08);
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .nav-scroll-track.visible {
+    opacity: 1;
+  }
+
+  .nav-scroll-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, #C2152F 60%, rgba(194,21,47,0.25) 100%);
+    transition: height 0.08s linear;
+  }
+
+  .nav-scroll-dot {
+    position: fixed;
+    left: calc(var(--nav-bar-width, 60px) - 9px);
+    top: 0%;
+    width: 10px;
+    height: 10px;
+    background: #C2152F;
+    border-radius: 50%;
+    z-index: 9999;
+    transform: translateY(-50%);
+    transition: top 0.08s linear, opacity 0.5s ease;
+    pointer-events: none;
+    box-shadow: 0 0 0 2px rgba(194,21,47,0.15), 0 0 10px rgba(194,21,47,0.35);
+    opacity: 0;
+  }
+
+  .nav-scroll-dot.visible {
+    opacity: 1;
+  }
+
+  .nav-scroll-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 991px) {
+    .nav-scroll-track,
+    .nav-scroll-dot {
+      display: none;
+    }
+  }
+</style>
+
+<div class="nav-scroll-track" id="navScrollTrack">
+  <div class="nav-scroll-fill" id="navScrollFill"></div>
+</div>
+<div class="nav-scroll-dot" id="navScrollDot"></div>
+
+<script>
+  (function() {
+    var fill    = document.getElementById('navScrollFill');
+    var dot     = document.getElementById('navScrollDot');
+    var track   = document.getElementById('navScrollTrack');
+    var ticking = false;
+    var active  = false;
+
+    function getNavBarWidth() {
+      var navBar = document.querySelector('.nav__bar');
+      return navBar ? navBar.getBoundingClientRect().width : 60;
+    }
+
+    function updateScroll() {
+      if (!active) return;
+      var navW      = getNavBarWidth();
+      var scrollTop = window.scrollY || document.documentElement.scrollTop;
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var progress  = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      var pct       = Math.round(progress);
+
+      fill.style.height = pct + '%';
+      dot.style.top     = pct + '%';
+      dot.style.left    = (navW - 9) + 'px';
+      track.style.left  = (navW - 4) + 'px';
+
+      ticking = false;
+    }
+
+    function showScrollBar() {
+      active = true;
+      track.classList.add('visible');
+      dot.classList.add('visible');
+      updateScroll();
+    }
+
+    /* Listen for your existing preloaderComplete event */
+    window.addEventListener('preloaderComplete', showScrollBar);
+
+    /* Fallback — in case preloader is already gone or event never fires */
+    setTimeout(function() {
+      if (!active) showScrollBar();
+    }, 6000);
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', updateScroll);
+  })();
+</script>
+
 <!-- VERTICAL FOOTER SECTION -->
 
 
