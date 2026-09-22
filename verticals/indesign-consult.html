@@ -1,3 +1,653 @@
-WHATSAPP_NUMBER: '919830191876',
-PAYMENT_LINK: 'https://razorpay.me/sumit',  // ← replace with real Razorpay link
-CONSULTATION_FEE: '₹1000'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>The InDesign | Start Your Project</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    WebFont.load({ google: { families: ["Arimo:regular,700","Playfair Display:regular,500,700"] }});
+  </script>
+
+  <style>
+    :root {
+      --baradia-black: #1a1a1a;
+      --bg-color: #f7f7f5;
+      --font-main: 'Arimo', sans-serif;
+      --font-serif: 'Playfair Display', serif;
+      --muted: rgba(0,0,0,0.55);
+      --line: rgba(0,0,0,0.1);
+      --indesign-brown: #b28f78;
+      --indesign-light: #f8f5f2;
+      --ok: #2d6a4f;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-color);
+      color: var(--baradia-black);
+      font-family: var(--font-main);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    .nav-bar {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 1.5rem;
+      background: rgba(247,247,245,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-logo {
+      font-size: 1.1rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+    }
+    .nav-back {
+      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+      opacity: 0.65;
+    }
+    .nav-back:hover { opacity: 1; }
+
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--indesign-brown);
+      margin-bottom: 0.75rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .lead {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .progress {
+      display: flex; gap: 6px; margin-bottom: 2rem;
+    }
+    .progress span {
+      flex: 1; height: 3px; background: var(--line); border-radius: 2px;
+    }
+    .progress span.on { background: var(--indesign-brown); }
+
+    .panel { display: none; }
+    .panel.active { display: block; animation: rise 0.35s ease; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .field { margin-bottom: 1.25rem; }
+    label {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      color: var(--muted);
+    }
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-family: var(--font-main);
+      font-size: 1rem;
+      color: var(--baradia-black);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--indesign-brown);
+    }
+    textarea { min-height: 90px; resize: vertical; }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .choice-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+    @media (min-width: 520px) {
+      .choice-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .choice {
+      position: relative;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 0.95rem 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      font-size: 0.95rem;
+    }
+    .choice:hover { border-color: var(--indesign-brown); }
+    .choice input {
+      position: absolute; opacity: 0; pointer-events: none;
+    }
+    .choice:has(input:checked) {
+      border-color: var(--indesign-brown);
+      background: var(--indesign-light);
+    }
+
+    .actions {
+      display: flex; gap: 0.75rem; margin-top: 2rem; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.95rem 1.5rem;
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .btn-primary {
+      background: var(--baradia-black);
+      color: #fff;
+      flex: 1;
+      min-width: 160px;
+    }
+    .btn-primary:hover { background: var(--indesign-brown); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--line);
+    }
+    .btn-ghost:hover { color: var(--baradia-black); border-color: var(--baradia-black); }
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+      width: 100%;
+    }
+    .btn-whatsapp:hover { filter: brightness(0.95); }
+    .btn-pay {
+      background: var(--indesign-brown);
+      color: #fff;
+      width: 100%;
+      margin-bottom: 0.75rem;
+    }
+    .btn-pay:hover { filter: brightness(0.95); }
+
+    .option-card {
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .option-card:hover,
+    .option-card.selected {
+      border-color: var(--indesign-brown);
+      box-shadow: 0 8px 24px rgba(178,143,120,0.12);
+    }
+    .option-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .option-card p { color: var(--muted); line-height: 1.6; font-size: 0.95rem; }
+    .option-card .price {
+      margin-top: 0.85rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--indesign-brown);
+    }
+    .option-card ul {
+      margin: 0.85rem 0 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .summary {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--muted);
+      white-space: pre-wrap;
+    }
+    .pay-box {
+      background: var(--indesign-light);
+      border: 1px solid rgba(178,143,120,0.35);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .pay-box h3 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .pay-box p { color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+    .note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+    .error {
+      color: #9b1c1c;
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+      display: none;
+    }
+    .error.show { display: block; }
+
+    .edit-hint {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.75rem;
+      color: rgba(0,0,0,0.35);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    ============================================================
+    EDIT THESE 3 VALUES ON GITHUB (no rebuild needed):
+    Scroll to <script> CONFIG at the bottom of this file.
+      1. WHATSAPP_NUMBER
+      2. PAYMENT_LINK
+      3. CONSULTATION_FEE
+    ============================================================
+  -->
+
+  <div class="nav-bar">
+    <a class="nav-back" href="indesign.html">← Back to InDesign</a>
+    <a class="nav-logo" href="../index.html">BARADIA</a>
+  </div>
+
+  <div class="wrap">
+    <p class="eyebrow">The InDesign</p>
+    <h1 id="pageTitle">Tell us about your space</h1>
+    <p class="lead" id="pageLead">A few quick questions so we can guide you better.</p>
+
+    <div class="progress" id="progress" aria-hidden="true">
+      <span class="on"></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- STEP 1: Contact -->
+    <section class="panel active" data-step="1">
+      <div class="field">
+        <label for="name">Your Name *</label>
+        <input id="name" type="text" autocomplete="name" required/>
+      </div>
+      <div class="field">
+        <label for="phone">Phone *</label>
+        <input id="phone" type="tel" autocomplete="tel" required/>
+      </div>
+      <div class="field">
+        <label for="email">Email *</label>
+        <input id="email" type="email" autocomplete="email" required/>
+      </div>
+      <div class="field">
+        <label for="city">City / Location *</label>
+        <input id="city" type="text" autocomplete="address-level2" required/>
+      </div>
+      <p class="error" id="err1">Please fill all required fields.</p>
+      <div class="actions">
+        <button type="button" class="btn btn-primary" data-next="2">Continue →</button>
+      </div>
+    </section>
+
+    <!-- STEP 2: Project -->
+    <section class="panel" data-step="2">
+      <div class="field">
+        <label>Property Type *</label>
+        <div class="choice-grid">
+          <label class="choice"><input type="radio" name="property" value="Home"/> Home</label>
+          <label class="choice"><input type="radio" name="property" value="Office"/> Office</label>
+          <label class="choice"><input type="radio" name="property" value="Shop"/> Shop</label>
+          <label class="choice"><input type="radio" name="property" value="Other"/> Other</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>What stage are you at? *</label>
+        <div class="choice-grid cols-3">
+          <label class="choice"><input type="radio" name="stage" value="Just planning"/> Just planning</label>
+          <label class="choice"><input type="radio" name="stage" value="Under construction"/> Under construction</label>
+          <label class="choice"><input type="radio" name="stage" value="Ready property"/> Ready property</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="size">Approx size (sq ft or rooms) *</label>
+        <input id="size" type="text" placeholder="e.g. 1200 sq ft / 3BHK"/>
+      </div>
+      <p class="error" id="err2">Please complete all fields on this step.</p>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-prev="1">Back</button>
+        <button type="button" class="btn btn-primary" data-next="3">Continue →</button>
+      </div>
+    </section>
+
+    <!-- STEP 3: Budget / need / timeline -->
+    <section class="panel" data-step="3">
+      <div class="field">
+        <label>Budget range *</label>
+        <div class="choice-grid">
+          <label class="choice"><input type="radio" name="budget" value="Below 5L"/> Below 5L</label>
+          <label class="choice"><input type="radio" name="budget" value="5–10L"/> 5–10L</label>
+          <label class="choice"><input type="radio" name="budget" value="10–25L"/> 10–25L</label>
+          <label class="choice"><input type="radio" name="budget" value="25L+"/> 25L+</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>What do you need help with? *</label>
+        <div class="choice-grid cols-3">
+          <label class="choice"><input type="radio" name="need" value="Design"/> Design</label>
+          <label class="choice"><input type="radio" name="need" value="Execution"/> Execution</label>
+          <label class="choice"><input type="radio" name="need" value="Both"/> Both</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>When do you want to start? *</label>
+        <div class="choice-grid cols-3">
+          <label class="choice"><input type="radio" name="start" value="Immediately"/> Immediately</label>
+          <label class="choice"><input type="radio" name="start" value="1–3 months"/> 1–3 months</label>
+          <label class="choice"><input type="radio" name="start" value="Just exploring"/> Just exploring</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="notes">Anything else? (optional)</label>
+        <textarea id="notes" placeholder="Style preference, timeline notes…"></textarea>
+      </div>
+      <p class="error" id="err3">Please select budget, need, and start time.</p>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-prev="2">Back</button>
+        <button type="button" class="btn btn-primary" data-next="4">Continue →</button>
+      </div>
+    </section>
+
+    <!-- STEP 4: Consultation type -->
+    <section class="panel" data-step="4">
+      <p class="lead" style="margin-bottom: 1.25rem;">
+        Based on this, we can suggest a design direction for your space. Choose how you’d like to proceed:
+      </p>
+
+      <div class="option-card" id="optFree" data-path="free">
+        <h3>A) Free 10-min consultation</h3>
+        <p>Quick call to understand fit and next steps. Ideal if you’re exploring.</p>
+        <div class="price">Free</div>
+      </div>
+
+      <div class="option-card" id="optPaid" data-path="paid">
+        <h3>B) Paid detailed design consultation</h3>
+        <p>Structured session with clear takeaways.</p>
+        <ul>
+          <li>Layout guidance</li>
+          <li>Design direction</li>
+          <li>Budget clarity</li>
+        </ul>
+        <div class="price" id="feeLabel">Consultation Fee: ₹1000</div>
+      </div>
+
+      <p class="error" id="err4">Please choose a consultation option.</p>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-prev="3">Back</button>
+        <button type="button" class="btn btn-primary" id="goPath">Continue →</button>
+      </div>
+    </section>
+
+    <!-- STEP 5A: Free → WhatsApp -->
+    <section class="panel" data-step="5a">
+      <p class="lead">Review your details, then open WhatsApp. We’ll receive your lead instantly.</p>
+      <div class="summary" id="summaryFree"></div>
+      <button type="button" class="btn btn-whatsapp" id="sendFree">Send via WhatsApp →</button>
+      <p class="note">WhatsApp will open with a pre-typed message to The InDesign team. Just tap Send.</p>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-prev="4">Back</button>
+      </div>
+    </section>
+
+    <!-- STEP 5B: Paid → WhatsApp (payment link is only inside the message) -->
+    <section class="panel" data-step="5b">
+      <div class="pay-box">
+        <h3>Detailed design consultation</h3>
+        <p>
+          You get layout guidance, design direction, and budget clarity.<br/>
+          <strong id="feeStrong">Consultation Fee: ₹1000</strong>
+        </p>
+        <p class="note">
+          WhatsApp will open with your details plus the payment link pasted in the message.
+          Pay using that link, then share the screenshot on the same chat.
+        </p>
+      </div>
+      <div class="summary" id="summaryPaid"></div>
+      <button type="button" class="btn btn-whatsapp" id="sendPaid">Send via WhatsApp →</button>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" data-prev="4">Back</button>
+      </div>
+    </section>
+
+    <p class="edit-hint">
+      Site admin: edit WhatsApp number &amp; payment link in the CONFIG block at the bottom of this page
+      (<code>verticals/indesign-consult.html</code>).
+    </p>
+  </div>
+
+  <script>
+    /* ============================================================
+       🔧 EDIT HERE (GitHub → this file only)
+       ============================================================ */
+    const CONFIG = {
+      // India number without + or spaces. Prepend country code 91.
+      WHATSAPP_NUMBER: '919830191876',
+
+      // Replace with your real Razorpay payment link later
+      PAYMENT_LINK: 'https://razorpay.me/sumit',
+
+      // Shown on screen + in WhatsApp message
+      CONSULTATION_FEE: '₹1000'
+    };
+    /* ============================================================ */
+
+    const state = { path: null };
+
+    function $(sel) { return document.querySelector(sel); }
+    function $all(sel) { return Array.from(document.querySelectorAll(sel)); }
+    function radioVal(name) {
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : '';
+    }
+
+    function setFeeUI() {
+      const fee = CONFIG.CONSULTATION_FEE;
+      $('#feeLabel').textContent = 'Consultation Fee: ' + fee;
+      $('#feeStrong').textContent = 'Consultation Fee: ' + fee;
+    }
+
+    function goStep(step) {
+      $all('.panel').forEach(p => p.classList.remove('active'));
+      const panel = document.querySelector(`.panel[data-step="${step}"]`);
+      if (panel) panel.classList.add('active');
+
+      const map = { '1': 0, '2': 1, '3': 2, '4': 3, '5a': 3, '5b': 3 };
+      $all('#progress span').forEach((s, i) => {
+        s.classList.toggle('on', i <= (map[String(step)] ?? 0));
+      });
+
+      const titles = {
+        '1': ['Tell us about your space', 'A few quick questions so we can guide you better.'],
+        '2': ['Your property', 'Help us understand the space and stage.'],
+        '3': ['Budget & timeline', 'So we can suggest the right design direction.'],
+        '4': ['Choose consultation', 'Would you like a free call or a paid detailed session?'],
+        '5a': ['Send your lead', 'We’ll open WhatsApp with your details ready to send.'],
+        '5b': ['Send via WhatsApp', 'Your message will include the payment link. Just tap Send.']
+      };
+      const t = titles[String(step)];
+      if (t) {
+        $('#pageTitle').textContent = t[0];
+        $('#pageLead').textContent = t[1];
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function collect() {
+      return {
+        name: $('#name').value.trim(),
+        phone: $('#phone').value.trim(),
+        email: $('#email').value.trim(),
+        city: $('#city').value.trim(),
+        property: radioVal('property'),
+        stage: radioVal('stage'),
+        size: $('#size').value.trim(),
+        budget: radioVal('budget'),
+        need: radioVal('need'),
+        start: radioVal('start'),
+        notes: $('#notes').value.trim()
+      };
+    }
+
+    function validate(step) {
+      const d = collect();
+      if (step === 1) {
+        const ok = d.name && d.phone && d.email && d.city;
+        $('#err1').classList.toggle('show', !ok);
+        return ok;
+      }
+      if (step === 2) {
+        const ok = d.property && d.stage && d.size;
+        $('#err2').classList.toggle('show', !ok);
+        return ok;
+      }
+      if (step === 3) {
+        const ok = d.budget && d.need && d.start;
+        $('#err3').classList.toggle('show', !ok);
+        return ok;
+      }
+      return true;
+    }
+
+    function buildMessage(path) {
+      const d = collect();
+      const type = path === 'paid'
+        ? `Paid detailed consultation (${CONFIG.CONSULTATION_FEE})`
+        : 'Free 10-min consultation call';
+
+      let msg =
+`Hi! Welcome to The InDesign 😊
+New website lead — ${type}
+
+1. Name: ${d.name}
+2. Phone: ${d.phone}
+3. Email: ${d.email}
+4. City / Location: ${d.city}
+5. Property Type: ${d.property}
+6. Stage: ${d.stage}
+7. Approx size: ${d.size}
+8. Budget: ${d.budget}
+9. Need help with: ${d.need}
+10. Start: ${d.start}`;
+
+      if (d.notes) msg += `\n11. Notes: ${d.notes}`;
+
+      if (path === 'paid') {
+        msg += `
+
+We offer a detailed design consultation where you get:
+• Layout guidance
+• Design direction
+• Budget clarity
+
+Consultation Fee: ${CONFIG.CONSULTATION_FEE}
+
+To proceed, please make payment here:
+${CONFIG.PAYMENT_LINK}
+
+Once done, share screenshot. We will schedule your call.`;
+      } else {
+        msg += `\n\nPlease schedule my free 10-min consultation call.`;
+      }
+      return msg;
+    }
+
+    function openWhatsApp(path) {
+      const text = encodeURIComponent(buildMessage(path));
+      const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${text}`;
+      window.open(url, '_blank');
+    }
+
+    function fillSummaries() {
+      const d = collect();
+      const block =
+`${d.name} · ${d.phone}
+${d.email} · ${d.city}
+${d.property} · ${d.stage} · ${d.size}
+Budget ${d.budget} · ${d.need} · Start: ${d.start}` +
+        (d.notes ? `\n${d.notes}` : '');
+      $('#summaryFree').textContent = block;
+      $('#summaryPaid').textContent = block;
+    }
+
+    // Choice cards
+    $all('.option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        $all('.option-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        state.path = card.dataset.path;
+        $('#err4').classList.remove('show');
+      });
+    });
+
+    $('#goPath').addEventListener('click', () => {
+      if (!state.path) {
+        $('#err4').classList.add('show');
+        return;
+      }
+      fillSummaries();
+      goStep(state.path === 'paid' ? '5b' : '5a');
+    });
+
+    $('#sendFree').addEventListener('click', () => openWhatsApp('free'));
+    $('#sendPaid').addEventListener('click', () => openWhatsApp('paid'));
+
+    $all('[data-next]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const next = Number(btn.dataset.next);
+        const current = next - 1;
+        if (!validate(current)) return;
+        goStep(String(next));
+      });
+    });
+
+    $all('[data-prev]').forEach(btn => {
+      btn.addEventListener('click', () => goStep(btn.dataset.prev));
+    });
+
+    setFeeUI();
+  </script>
+</body>
+</html>
