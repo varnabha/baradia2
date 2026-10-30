@@ -61,6 +61,32 @@
   will-change: transform;
 }
 
+.home__hero-video::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: linear-gradient(90deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.35) 55%, rgba(0,0,0,.15) 100%);
+}
+.home__hero-h { text-shadow: 0 2px 18px rgba(0,0,0,.35); }
+@media (max-width: 767px) {
+  .home__hero-video::after { background: rgba(0,0,0,.5); }
+}
+.hero-doc-sub {
+  margin-top: 18px; max-width: 620px; color: #fff; font-family: 'Arimo', sans-serif;
+  font-size: 1.05rem; line-height: 1.55; text-shadow: 0 1px 8px rgba(0,0,0,.45);
+}
+.hero-doc-ctas { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 8px; }
+.hero-call-btn {
+  display: inline-block; margin-top: 22px; padding: 14px 28px; border: 1px solid rgba(255,255,255,.8);
+  border-radius: 100px; color: #fff !important; text-decoration: none !important; font-family: 'Arimo', sans-serif;
+  font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .9rem;
+}
+.hero-doc-trust {
+  margin-top: 18px; color: rgba(255,255,255,.92); font-family: 'Arimo', sans-serif; font-size: .8rem;
+  letter-spacing: .08em; text-transform: uppercase; text-shadow: 0 1px 6px rgba(0,0,0,.5);
+}
+@media (max-width: 767px) {
+  .hero-doc-sub { font-size: .92rem; }
+  .hero-doc-trust { font-size: .68rem; line-height: 1.6; }
+}
 .hero-cta-btn {
   display: inline-block;
   margin-top: 22px;
@@ -637,9 +663,11 @@ img.preloader__emblem {
 
 <div class="home__track" data-w-id="5a20b661-643f-5224-c570-7a5dd8ec53cd">
     
-    <div class="home__camera"><div class="home__frame"><div class="home__hero" data-w-id="5046f710-0801-f8ca-24d0-c5562ca60f8d"><div class="home__hero-content"><div class="home__hero-h-w"><h1 class="home__hero-h home__hero-h--1" style="opacity:0;-webkit-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)">We build legacy</h1>
-	<h1 class="home__hero-h home__hero-h--2" style="opacity:0;-webkit-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)">through systems.</h1>
-	<a href="verticals.html" class="hero-cta-btn">Discover Our Verticals</a>
+    <div class="home__camera"><div class="home__frame"><div class="home__hero" data-w-id="5046f710-0801-f8ca-24d0-c5562ca60f8d"><div class="home__hero-content"><div class="home__hero-h-w"><h1 class="home__hero-h home__hero-h--1" style="opacity:0;-webkit-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)">Sustainable Design,</h1>
+	<h1 class="home__hero-h home__hero-h--2" style="opacity:0;-webkit-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)">Future-Ready Systems.</h1>
+	<p class="hero-doc-sub">Interior Design | Agroecology | Business Solutions<br/>We help individuals and businesses in Kolkata and beyond build spaces, farms and ventures that are efficient, profitable and sustainable.</p>
+	<div class="hero-doc-ctas"><a href="start/" class="hero-cta-btn start-now">Let's Connect</a><a href="tel:+919830183828" class="hero-call-btn">Call Now</a></div>
+	<p class="hero-doc-trust">20+ Years Experience &nbsp;|&nbsp; 100+ Projects &nbsp;|&nbsp; 9 Bigha Organic Farm &nbsp;|&nbsp; Multi-Industry Expertise</p>
 
 	</div><a class="home__hero-arrow-w w-inline-block" data-w-id="dbf46a22-3ad5-3404-89d6-9567aa3b595b" href="#"><img alt="" class="home__hero-arrow" loading="lazy" src="https://cdn.prod.website-files.com/611a557eddbf9c7358e20042/611a57ac2a1737f2e4e13f49_arrow-right-light-brown.svg"/></a><div class="home__hero-scroll">Scroll down to navigate</div></div>
 
@@ -662,7 +690,7 @@ img.preloader__emblem {
     loop
     muted
     playsinline
-    preload="auto"
+    preload="metadata" poster="furniture.webp"
     data-object-fit="cover"
     data-wf-ignore="true"
     style='background-image:url("furniture.webp")'
@@ -682,7 +710,7 @@ img.preloader__emblem {
     class="home__style1-image"
     loading="eager"
     sizes="(max-width: 1760px) 100vw, 1760px"
-    src="images/premium2.png"
+    src="images/premium2-web.jpg"
   />
 </div>
 <div class="home__style1-number-w"><div class="home__style1-number w-embed"><svg fill="none" height="auto" viewbox="0 0 766 551" width="auto" xmlns="http://www.w3.org/2000/svg">
@@ -694,7 +722,7 @@ img.preloader__emblem {
     class="home__wine-image"
     loading="eager"
     sizes="(max-width: 2560px) 100vw, 2560px"
-    src="team2.jpg"
+    src="images/team2-web.jpg"
   />
 </div>
 <div class="home__style2"><div class="home__style2-sticky"><div class="home__style2-number home__style2-number--nomobile w-embed"><svg fill="none" height="auto" viewbox="0 0 902 550" width="auto" xmlns="http://www.w3.org/2000/svg">
@@ -708,7 +736,7 @@ img.preloader__emblem {
     class="home__shop-image"
     loading="eager"
     sizes="(max-width: 1770px) 100vw, 1770px"
-    src="/images/furniture5.png"
+    src="/images/furniture5-web.jpg"
   />
 </div>
 <div class="home__shop-menu-w"><div class="home__shop-menu" data-w-id="87bb59de-bc77-7642-853b-5a92c74df6be"><div class="home__shop-tradition">
@@ -716,7 +744,7 @@ img.preloader__emblem {
 <div class="home__shop-info"><div class="home__shop-bar home__shop-bar--1" style="width:0%"></div><div class="home__shop-top home__shop-top--1" style="-webkit-transform:translate3d(0, 32%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 32%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 32%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 32%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0">Premium</div><div class="home__shop-bottom home__shop-bottom--1" style="-webkit-transform:translate3d(0, -32%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, -32%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, -32%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, -32%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0">Since 1963</div><div class="home__shop-info-mask home__shop-info-mask--1" style="-webkit-transform:translate3d(0, 0vw, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0vw, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0vw, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0vw, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"></div></div>
 
 
-<a class="home__shop-h-w home__shop-h-w--1 w-inline-block" href="legacy.html" style="opacity:0;-webkit-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"><div class="home__shop-h">Legacy</div><div class="home__shop-number"></div></a><div class="home__shop-tradition-bar"></div></div><div class="home__shop-tradition home__shop-tradition--left"><a class="home__shop-h-w home__shop-h-w--black home__shop-h-w--2 w-inline-block" href="sewa.html" style="opacity:0;-webkit-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)">
+<a class="home__shop-h-w home__shop-h-w--1 w-inline-block" href="legacy.html" style="opacity:0;-webkit-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"><div class="home__shop-h">Legacy</div><div class="home__shop-number"></div></a><div class="home__shop-tradition-bar"></div></div><div class="home__shop-tradition home__shop-tradition--left"><a class="home__shop-h-w home__shop-h-w--black home__shop-h-w--2 w-inline-block" href="/sewa" style="opacity:0;-webkit-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)">
         <div class="home__shop-h">Sewa</div>
         <div class="home__shop-number"></div>
     </a><div class="home__shop-tradition-bar"></div></div><div class="home__shop-tradition"><a class="home__shop-h-w home__shop-h-w--margin home__shop-h-w--3 w-inline-block" href="vision.html" style="opacity:0;-webkit-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3vh, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"><div class="home__shop-h">Vision</div><div class="home__shop-number"></div></a>
@@ -808,11 +836,6 @@ img.preloader__emblem {
     data-wf-ignore="true"
     style='background-image:url("furniture4.jpg")'
   >
-    <source
-      data-wf-ignore="true"
-      src="furniture4.mp4"
-      type="video/mp4"
-    />
   </video>
 </div>
 
@@ -855,7 +878,7 @@ img.preloader__emblem {
     
    <div class="home__news-w">
   
-  <a href="verticals/indesign.html" class="home__news-box w-inline-block">
+  <a href="/indesign" class="home__news-box w-inline-block">
     <div class="home__news-image-w">
         <img src="bw logo 2019_JPG.avif" class="brand-img-fill" alt="The InDesign">
     </div>
@@ -867,7 +890,7 @@ img.preloader__emblem {
     </div>
   </a>
 
-  <a href="verticals/indesignbranded.html" class="home__news-box w-inline-block">
+  <a href="/indesignbranded" class="home__news-box w-inline-block">
     <div class="home__news-image-w">
         <img src="images/IB.jpg" class="brand-img-fill" alt="Branded">
     </div>
@@ -879,7 +902,7 @@ img.preloader__emblem {
     </div>
   </a>
 
-  <a href="verticals/infield.html" class="home__news-box w-inline-block">
+  <a href="/infield" class="home__news-box w-inline-block">
     <div class="home__news-image-w">
         <img src="The InField logo.avif" class="brand-img-fill" alt="InField">
     </div>
@@ -891,7 +914,7 @@ img.preloader__emblem {
     </div>
   </a>
 
-  <a href="verticals/invest.html" class="home__news-box w-inline-block">
+  <a href="/invest" class="home__news-box w-inline-block">
     <div class="home__news-image-w">
         <img src="The InVest logo.avif" class="brand-img-fill" alt="The Invest">
     </div>
@@ -903,7 +926,7 @@ img.preloader__emblem {
     </div>
   </a>
 
-  <a href="verticals/aiventure.html" class="home__news-box w-inline-block">
+  <a href="/aiventures" class="home__news-box w-inline-block">
     <div class="home__news-image-w">
         <img src="A_I_ Venture.avif" class="brand-img-fill" alt="AI Ventures">
     </div>
@@ -954,12 +977,12 @@ img.preloader__emblem {
         <div class="footer-column">
   <h3>Verticals</h3>
   <div class="footer-links">
-    <a href="verticals/i.html">The InDesign</a>
-    <a href="verticals/ib.html">InDesign Branded</a>
-    <a href="verticals/if.html">The InField</a>
-    <a href="verticals/ii.html">The Invest</a>
-    <a href="verticals/ai.html">AI Ventures</a>
-    <a href="sewa.html">SEWA</a>
+    <a href="indesign/">The InDesign</a>
+    <a href="indesignbranded/">InDesign Branded</a>
+    <a href="infield/">The InField</a>
+    <a href="invest/">The Invest</a>
+    <a href="aiventures/">AI Ventures</a>
+    <a href="sewa/">SEWA</a>
   </div>
 </div>
         
@@ -1679,4 +1702,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-</script></body></html>
+</script><script src="/assets/site.js" defer></script>
+</body></html>

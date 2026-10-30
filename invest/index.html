@@ -1,16 +1,742 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirecting...</title>
+  <meta charset="utf-8"/>
+  <title>The Invest | Strategic Investments | Baradia Group, Kolkata</title>
+  <meta name="description" content="The Invest by Baradia Group, Kolkata — Strategic Investments. Business | Land | Opportunities — responsible, long-term investing."/>
+  <link rel="icon" href="/images/favicon/favicon-32x32.png"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-  <meta http-equiv="refresh" content="0; url=https://www.baradiagroup.com/verticals/invest.html" />
-  <script>
-    window.location.replace("https://www.baradiagroup.com/verticals/invest.html");
-  </script>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&amp;family=Playfair+Display:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <script src="/assets/site.js" defer></script>
+
+  <style>
+    :root {
+      --baradia-red: #C2152F;
+      --baradia-black: #1a1a1a;
+      --bg-color: #f7f7f5;
+      --font-main: 'Arimo', sans-serif;
+      --font-serif: 'Playfair Display', serif;
+      --line: rgba(0,0,0,0.1);
+      --muted: rgba(0,0,0,0.6);
+      --invest-blue: #2a5c9a;
+      --invest-light: #f0f5ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--baradia-black);
+      font-family: var(--font-main);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+    /* --- NAVIGATION --- */
+    .nav-bar {
+      position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100; pointer-events: none; mix-blend-mode: difference;
+    }
+    .nav-logo {
+      pointer-events: auto;
+      font-family: var(--font-main); font-size: 1.8rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; color: #fff;
+    }
+    .nav-back {
+      pointer-events: auto;
+      font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 8px;
+      opacity: 0.7; transition: opacity 0.3s; color: #fff;
+    }
+    .nav-back:hover { opacity: 1; }
+
+    /* --- HERO --- */
+    .hero-visual {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 10vw 8rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1496372412473-e8548ffd82bc?w=1920&q=70&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+      transform: scale(1.1);
+      animation: slowZoom 20s ease-out forwards;
+    }
+
+    @keyframes slowZoom {
+      to { transform: scale(1); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero-label {
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1.5rem;
+      display: block;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      line-height: 0.95;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      line-height: 1.3;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      max-width: 600px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    /* --- STORY STRIP --- */
+    .story-strip {
+      position: relative;
+      height: 70vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--baradia-black);
+    }
+
+    .story-strip-bg {
+      position: absolute;
+      width: 100%; height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1626198226928-617fc6c6203e?w=1600&q=70&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.6;
+      mix-blend-mode: luminosity;
+    }
+
+    .story-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .story-text p {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      line-height: 1.2;
+      color: #fff;
+      max-width: 800px;
+      font-weight: 500;
+    }
+
+    /* --- SECTION --- */
+    .section {
+      padding: 6rem 10vw;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    /* --- SPLIT VISION --- */
+    .split-vision {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+      border-top: 1px solid var(--line);
+    }
+
+    .split-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .split-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.1);
+      transition: transform 1.2s ease;
+    }
+
+    .split-vision:hover .split-image img {
+      transform: scale(1);
+    }
+
+    .split-content {
+      padding: 6rem 5vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg-color);
+    }
+
+    .split-label {
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--invest-blue);
+      margin-bottom: 1rem;
+    }
+
+    .split-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .split-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 500px;
+    }
+
+    /* --- PLATFORM SECTION --- */
+    .platform-section {
+      padding: 8rem 10vw;
+      background: var(--invest-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .platform-content {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+
+    .platform-label {
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--invest-blue);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .platform-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .platform-features {
+      list-style: none;
+      margin-top: 2rem;
+    }
+
+    .platform-features li {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .platform-features li:before {
+      content: "—";
+      color: var(--invest-blue);
+      font-weight: 700;
+    }
+
+    .device-showcase {
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .device-mockup {
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .device-mockup img {
+      width: 100%;
+      display: block;
+    }
+
+    .phone-mockup {
+      position: absolute;
+      bottom: -40px;
+      left: -60px;
+      width: 180px;
+      z-index: 3;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 8px solid var(--baradia-black);
+      background: #fff;
+    }
+
+    .phone-mockup img {
+      width: 100%;
+      display: block;
+    }
+
+    /* --- SERVICES GRID --- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .service-card {
+      padding: 4rem 3rem;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.4s ease;
+    }
+
+    .service-card:hover {
+      background: var(--invest-light);
+    }
+
+    .service-number {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      color: var(--invest-blue);
+      opacity: 0.2;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .service-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* --- PROCESS TIMELINE --- */
+    .process-section {
+      padding: 6rem 10vw;
+      background: var(--baradia-black);
+      color: #fff;
+      position: relative;
+    }
+
+    .process-header {
+      text-align: center;
+      margin-bottom: 5rem;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .process-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 500;
+    }
+
+    .process-steps {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .process-steps:before {
+      content: '';
+      position: absolute;
+      top: 2rem;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .step {
+      flex: 1;
+      text-align: center;
+      padding: 0 1rem;
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+    }
+
+    .step-circle {
+      width: 4rem;
+      height: 4rem;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      background: var(--baradia-black);
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .step:hover .step-circle {
+      border-color: var(--invest-blue);
+      background: var(--invest-blue);
+    }
+
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .step-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+
+    /* --- CTA --- */
+    .cta-visual {
+      position: relative;
+      padding: 10rem 10vw;
+      background-image: linear-gradient(rgba(42,92,154,0.9), rgba(42,92,154,0.9)), url('https://images.unsplash.com/photo-1571679654681-ba01b9e1e117?w=1600&q=70&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    
+    .cta-content h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .cta-content p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 500px;
+    }
+
+    .cta-btn {
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 18px 32px;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    .cta-btn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+      border-color: #fff;
+    }
+
+    /* --- PRELOADER --- */
+    .preloader {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: #fff; z-index: 9999; display: flex;
+      justify-content: center; align-items: center; transition: opacity 0.8s ease;
+    }
+
+    /* --- ANIM --- */
+    .fade-in-up { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* Mobile */
+    @media (max-width: 968px) {
+      .nav-bar { padding: 1.5rem; mix-blend-mode: normal; }
+      .nav-logo, .nav-back { color: var(--baradia-black); }
+      .hero-visual { padding: 0 1.5rem 4rem; height: 90vh; }
+      .split-vision { grid-template-columns: 1fr; }
+      .split-image { height: 50vh; }
+      .platform-grid { grid-template-columns: 1fr; }
+      .phone-mockup { left: 50%; transform: translateX(-50%); bottom: -30px; width: 140px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-steps { flex-direction: column; gap: 3rem; }
+      .process-steps:before { display: none; }
+      .cta-visual { padding: 6rem 1.5rem; flex-direction: column; text-align: center; }
+      .section { padding: 4rem 1.5rem; }
+    }
+    /* --- 2026 refresh: clarity + speed --- */
+    .section-header { opacity: 1; transform: none; }
+    .hero-title { font-size: clamp(2.4rem, 5.6vw, 4.8rem); line-height: 1.05; }
+    .hero-subtitle { font-family: var(--font-main); font-size: clamp(1.05rem, 1.6vw, 1.35rem); max-width: 680px; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
+    .hero-call { color: #fff; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.5); padding-bottom: 2px; }
+    .trust-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem 2.5rem; padding: 1.4rem 6vw; background: var(--baradia-black); color: #fff; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .trust-bar span::before { content: "✔ "; color: #ff8a9b; }
+    .story-text h2 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3.4rem); color: #fff; font-weight: 500; margin-bottom: 1rem; }
+    .story-text p { font-family: var(--font-main); font-size: clamp(1.1rem, 2vw, 1.5rem); opacity: 0.92; margin: 0 auto; }
+    .process-cta { text-align: center; margin-top: 4rem; }
+    .cta-visual .cta-btn.start-now { border-radius: 999px; }
+    @media (max-width: 968px) {
+      .cta-visual { background-attachment: scroll; }
+      .hero-actions { justify-content: flex-start; }
+      .trust-bar { gap: 0.5rem 1.25rem; font-size: 0.75rem; }
+    }
+  </style>
 </head>
+
 <body>
-  Redirecting to Invest...
+  <div class="preloader" id="preloader">
+    <div style="font-family: 'Arimo'; font-weight: 700; letter-spacing: 0.2em; color: var(--invest-blue);">
+      THE INVEST
+    </div>
+  </div>
+
+  <div class="nav-bar">
+    <a class="nav-back" href="../index.html" id="backButton">← Go Back</a>
+    <a class="nav-logo" href="../index.html">BARADIA</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero-visual">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="hero-label anim-target" style="transition-delay: 0.1s;">The Invest · Baradia Group, Kolkata</span>
+      <h1 class="hero-title anim-target" style="transition-delay: 0.2s;">Strategic Investments</h1>
+      <p class="hero-subtitle anim-target" style="transition-delay: 0.3s;">Business | Land | Opportunities — responsible, long-term investing.</p>
+      <div class="hero-actions">
+        <a class="start-now" href="../start/?v=invest">Let's Connect <span>→</span></a>
+        <a class="hero-call" href="tel:+919830183828">Call +91 98301 83828</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-bar">
+    <span>20+ Years Experience</span><span>100+ Projects</span><span>9 Bigha Organic Farm</span><span>Multi-Industry Expertise</span>
+  </div>
+
+  <!-- Story Strip -->
+  <section class="story-strip">
+    <div class="story-strip-bg"></div>
+    <div class="story-text">
+      <h2 class="anim-target" style="transition-delay: 0.1s;">Built on 20+ years of ground-level experience.</h2>
+      <p class="anim-target" style="transition-delay: 0.2s;">Business, land and partnership opportunities — evaluated with discipline.</p>
+    </div>
+  </section>
+
+  <!-- Split Vision -->
+  <section class="split-vision">
+    <div class="split-image">
+      <img loading="lazy" decoding="async" alt="The Invest" class="anim-target" src="https://images.unsplash.com/photo-1754531976828-69e42ce4e0d9?w=1600&amp;q=70&amp;auto=format&amp;fit=crop" style="transition-delay: 0.1s;"/>
+    </div>
+    <div class="split-content anim-target" style="transition-delay: 0.3s;">
+      <span class="split-label">Our Approach</span>
+      <h2 class="split-title">Vision &amp; Mission</h2>
+      <p class="split-text">
+        To be a globally trusted partner creating sustainable prosperity. We combine rigorous analytics with human insight, ensuring every investment aligns with both your financial goals and your values.
+      </p>
+    </div>
+  </section>
+
+  <!-- Platform / Devices Section -->
+  <section class="platform-section">
+    <div class="platform-grid">
+      <div class="platform-content anim-target" style="transition-delay: 0.2s;">
+        <span class="platform-label">The Platform</span>
+        <h2 class="platform-title">Your Wealth,<br/>Visualized</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--muted); margin-bottom: 2rem;">
+          Access comprehensive portfolio analytics, ESG impact tracking, and real-time market insights through our intuitive dashboard.
+        </p>
+        <ul class="platform-features">
+          <li>Real-time portfolio analytics</li>
+          <li>ESG impact visualization</li>
+          <li>Secure mobile trading</li>
+          <li>Personalized wealth forecasting</li>
+        </ul>
+      </div>
+      
+      <div class="device-showcase anim-target" style="transition-delay: 0.4s;">
+        <div class="device-mockup">
+          <img loading="lazy" decoding="async" alt="Dashboard" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=70&amp;w=1600&amp;auto=format&amp;fit=crop"/>
+        </div>
+        <div class="phone-mockup">
+          <img loading="lazy" decoding="async" alt="Mobile App" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=70&amp;w=800&amp;auto=format&amp;fit=crop"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="section" style="padding: 0; border: none;">
+    <div class="section-header" style="padding: 6rem 10vw 3rem;">
+      <div class="section-title">What We Offer</div>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card anim-target" style="transition-delay: 0.1s;">
+        <div class="service-number">01</div>
+        <h3 class="service-title">Wealth Advisory</h3>
+        <p class="service-text">Personalized investment plans aligned with your life goals and risk tolerance.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.2s;">
+        <div class="service-number">02</div>
+        <h3 class="service-title">Private Equity</h3>
+        <p class="service-text">Access to promising ventures and sustainable businesses with solid fundamentals.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.3s;">
+        <div class="service-number">03</div>
+        <h3 class="service-title">Global Markets</h3>
+        <p class="service-text">Cross-border diversification and digital asset strategies managed with precision.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.4s;">
+        <div class="service-number">04</div>
+        <h3 class="service-title">Family Office</h3>
+        <p class="service-text">Integrated wealth, insurance, and succession planning for multigenerational prosperity.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.5s;">
+        <div class="service-number">05</div>
+        <h3 class="service-title">Impact Investing</h3>
+        <p class="service-text">Renewable energy, green technology, and social ventures that create real-world value.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.6s;">
+        <div class="service-number">06</div>
+        <h3 class="service-title">Digital Assets</h3>
+        <p class="service-text">Future-ready cryptocurrency and blockchain investment strategies with managed risk.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Timeline -->
+  <section class="process-section">
+    <div class="process-header anim-target" style="transition-delay: 0.1s;">
+      <h2 class="process-title">Simple Process</h2>
+    </div>
+
+    <div class="process-steps">
+      <div class="step anim-target" style="transition-delay: 0.2s;">
+        <div class="step-circle">1</div>
+        <h3 class="step-title">Connect</h3>
+        <p class="step-text">Tap Let's Connect or call us</p>
+      </div>
+      <div class="step anim-target" style="transition-delay: 0.3s;">
+        <div class="step-circle">2</div>
+        <h3 class="step-title">Understand</h3>
+        <p class="step-text">We study your requirement</p>
+      </div>
+      <div class="step anim-target" style="transition-delay: 0.4s;">
+        <div class="step-circle">3</div>
+        <h3 class="step-title">Strategy &amp; Proposal</h3>
+        <p class="step-text">Clear plan, scope and budget</p>
+      </div>
+      <div class="step anim-target" style="transition-delay: 0.5s;">
+        <div class="step-circle">4</div>
+        <h3 class="step-title">Execution &amp; Delivery</h3>
+        <p class="step-text">We deliver — you move in</p>
+      </div>
+    </div>
+
+    <div class="process-cta">
+      <a class="start-now" href="../start/?v=invest">Let's Connect <span>→</span></a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-visual">
+    <div class="cta-content anim-target" style="transition-delay: 0.2s;">
+      <h2>Let’s Build Something<br/>Meaningful Together</h2>
+      <p>Have a business, land or partnership opportunity? Let’s talk.</p>
+    </div>
+    <a class="cta-btn start-now" href="../start/?v=invest">
+      Let's Connect <span>→</span>
+    </a>
+  </section>
+  <script>
+    document.getElementById('backButton').addEventListener('click', function (e) {
+      e.preventDefault();
+      if (document.referrer && document.referrer.indexOf(location.hostname) !== -1) history.back();
+      else location.href = '../index.html';
+    });
+  </script>
 </body>
 </html>

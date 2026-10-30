@@ -1,17 +1,798 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirecting...</title>
+  <meta charset="utf-8"/>
+  <title>The InDesign | Interior Architecture &amp; Turnkey Solutions | Baradia Group, Kolkata</title>
+  <meta name="description" content="The InDesign by Baradia Group, Kolkata — Interior Architecture &amp; Turnkey Solutions. Office | Retail | Residential — end-to-end design + execution, from Kolkata."/>
+  <link rel="icon" href="/images/favicon/favicon-32x32.png"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-  <meta http-equiv="refresh" content="0; url=https://www.baradiagroup.com/verticals/indesign.html" />
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&amp;family=Playfair+Display:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <script src="/assets/site.js" defer></script>
 
-  <script>
-    window.location.replace("https://www.baradiagroup.com/verticals/indesign.html");
-  </script>
+  <style>
+    :root {
+      --baradia-red: #C2152F;
+      --baradia-black: #1a1a1a;
+      --bg-color: #f7f7f5;
+      --font-main: 'Arimo', sans-serif;
+      --font-serif: 'Playfair Display', serif;
+      --line: rgba(0,0,0,0.1);
+      --muted: rgba(0,0,0,0.6);
+      --indesign-brown: #b28f78;
+      --indesign-light: #f8f5f2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--baradia-black);
+      font-family: var(--font-main);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+    /* --- NAVIGATION --- */
+    .nav-bar {
+      position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100; pointer-events: none; mix-blend-mode: difference;
+    }
+    .nav-logo {
+      pointer-events: auto;
+      font-family: var(--font-main); font-size: 1.8rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; color: #fff;
+    }
+    .nav-back {
+      pointer-events: auto;
+      font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 8px;
+      opacity: 0.7; transition: opacity 0.3s; color: #fff;
+    }
+    .nav-back:hover { opacity: 1; }
+
+    /* --- HERO --- */
+    .hero-visual {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 10vw 8rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1745301558339-44eb3217d5da?w=1920&q=70&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+      transform: scale(1.1);
+      animation: slowZoom 20s ease-out forwards;
+    }
+
+    @keyframes slowZoom {
+      to { transform: scale(1); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero-label {
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1.5rem;
+      display: block;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      line-height: 0.95;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      line-height: 1.3;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      max-width: 600px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    /* --- STORY STRIP --- */
+    .story-strip {
+      position: relative;
+      height: 70vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--baradia-black);
+    }
+
+    .story-strip-bg {
+      position: absolute;
+      width: 100%; height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1742325646212-f917ba1feeaa?w=1600&q=70&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.6;
+      mix-blend-mode: luminosity;
+    }
+
+    .story-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .story-text p {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      line-height: 1.2;
+      color: #fff;
+      max-width: 800px;
+      font-weight: 500;
+    }
+
+    /* --- SPLIT VISION --- */
+    .split-vision {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+      border-top: 1px solid var(--line);
+    }
+
+    .split-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .split-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.1);
+      transition: transform 1.2s ease;
+    }
+
+    .split-vision:hover .split-image img {
+      transform: scale(1);
+    }
+
+    .split-content {
+      padding: 6rem 5vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--indesign-light);
+    }
+
+    .split-label {
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--indesign-brown);
+      margin-bottom: 1rem;
+    }
+
+    .split-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .split-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 500px;
+    }
+
+    /* --- PORTFOLIO SHOWCASE (Device Section) --- */
+    .portfolio-section {
+      padding: 8rem 10vw;
+      background: var(--bg-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .portfolio-content {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+
+    .portfolio-label {
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--indesign-brown);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .portfolio-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .portfolio-features {
+      list-style: none;
+      margin-top: 2rem;
+    }
+
+    .portfolio-features li {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .portfolio-features li:before {
+      content: "—";
+      color: var(--indesign-brown);
+      font-weight: 700;
+    }
+
+    .device-showcase {
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .tablet-mockup {
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #1a1a1a;
+      border: 12px solid #1a1a1a;
+      transform: rotate(-2deg);
+      transition: transform 0.4s ease;
+    }
+
+    .tablet-mockup:hover {
+      transform: rotate(0deg) scale(1.02);
+    }
+
+    .tablet-mockup img {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .material-sample {
+      position: absolute;
+      bottom: -30px;
+      right: -40px;
+      width: 200px;
+      z-index: 3;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+      transform: rotate(5deg);
+      transition: transform 0.4s ease;
+    }
+
+    .material-sample:hover {
+      transform: rotate(8deg) scale(1.05);
+    }
+
+    .material-sample img {
+      width: 100%;
+      display: block;
+      border-radius: 4px;
+    }
+
+    /* --- SERVICES GRID --- */
+    .services-section {
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-left: 1px solid var(--line);
+    }
+
+    .service-card {
+      padding: 4rem 3rem;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.4s ease;
+      background: var(--bg-color);
+    }
+
+    .service-card:hover {
+      background: var(--indesign-light);
+    }
+
+    .service-number {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      color: var(--indesign-brown);
+      opacity: 0.2;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .service-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* --- IMAGE GALLERY STRIP --- */
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      height: 50vh;
+      overflow: hidden;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: #fff;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-overlay span {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+    }
+
+    /* --- PROCESS TIMELINE --- */
+    .process-section {
+      padding: 6rem 10vw;
+      background: var(--indesign-brown);
+      color: #fff;
+      position: relative;
+    }
+
+    .process-header {
+      text-align: center;
+      margin-bottom: 5rem;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .process-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 500;
+    }
+
+    .process-steps {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .process-steps:before {
+      content: '';
+      position: absolute;
+      top: 2rem;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .step {
+      flex: 1;
+      text-align: center;
+      padding: 0 1rem;
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+    }
+
+    .step-circle {
+      width: 4rem;
+      height: 4rem;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      background: var(--indesign-brown);
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .step:hover .step-circle {
+      border-color: #fff;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .step-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+
+    /* --- CTA --- */
+    .cta-visual {
+      position: relative;
+      padding: 10rem 10vw;
+      background-image: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.9)), url('https://images.unsplash.com/photo-1787390629829-abb32b3025c5?w=1600&q=70&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    
+    .cta-content h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .cta-content p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 500px;
+    }
+
+    .cta-btn {
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 18px 32px;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      color: #fff;
+    }
+    .cta-btn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+      border-color: #fff;
+    }
+
+    /* --- PRELOADER --- */
+    .preloader {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: #fff; z-index: 9999; display: flex;
+      justify-content: center; align-items: center; transition: opacity 0.8s ease;
+    }
+
+    /* --- ANIM --- */
+    .fade-in-up { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* Mobile */
+    @media (max-width: 968px) {
+      .nav-bar { padding: 1.5rem; mix-blend-mode: normal; }
+      .nav-logo, .nav-back { color: var(--baradia-black); }
+      .hero-visual { padding: 0 1.5rem 4rem; height: 90vh; }
+      .split-vision { grid-template-columns: 1fr; }
+      .split-image { height: 50vh; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .material-sample { right: 20px; width: 150px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-strip { grid-template-columns: repeat(2, 1fr); height: auto; }
+      .gallery-item { height: 30vh; }
+      .process-steps { flex-direction: column; gap: 3rem; }
+      .process-steps:before { display: none; }
+      .cta-visual { padding: 6rem 1.5rem; flex-direction: column; text-align: center; }
+      .section { padding: 4rem 1.5rem; }
+    }
+    /* --- 2026 refresh: clarity + speed --- */
+    .section-header { opacity: 1; transform: none; }
+    .hero-title { font-size: clamp(2.4rem, 5.6vw, 4.8rem); line-height: 1.05; }
+    .hero-subtitle { font-family: var(--font-main); font-size: clamp(1.05rem, 1.6vw, 1.35rem); max-width: 680px; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
+    .hero-call { color: #fff; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.5); padding-bottom: 2px; }
+    .trust-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem 2.5rem; padding: 1.4rem 6vw; background: var(--baradia-black); color: #fff; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .trust-bar span::before { content: "✔ "; color: #ff8a9b; }
+    .story-text h2 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3.4rem); color: #fff; font-weight: 500; margin-bottom: 1rem; }
+    .story-text p { font-family: var(--font-main); font-size: clamp(1.1rem, 2vw, 1.5rem); opacity: 0.92; margin: 0 auto; }
+    .process-cta { text-align: center; margin-top: 4rem; }
+    .cta-visual .cta-btn.start-now { border-radius: 999px; }
+    @media (max-width: 968px) {
+      .cta-visual { background-attachment: scroll; }
+      .hero-actions { justify-content: flex-start; }
+      .trust-bar { gap: 0.5rem 1.25rem; font-size: 0.75rem; }
+    }
+  </style>
 </head>
+
 <body>
-  Redirecting to Baradia InDesign...
+  <div class="preloader" id="preloader">
+    <div style="font-family: 'Arimo'; font-weight: 700; letter-spacing: 0.2em; color: var(--indesign-brown);">
+      THE INDESIGN
+    </div>
+  </div>
+
+  <div class="nav-bar">
+    <a class="nav-back" href="../index.html" id="backButton">← Go Back</a>
+    <a class="nav-logo" href="../index.html">BARADIA</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero-visual">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="hero-label anim-target" style="transition-delay: 0.1s;">The InDesign · Baradia Group, Kolkata</span>
+      <h1 class="hero-title anim-target" style="transition-delay: 0.2s;">Interior Architecture &amp; Turnkey Solutions</h1>
+      <p class="hero-subtitle anim-target" style="transition-delay: 0.3s;">Office | Retail | Residential — end-to-end design + execution, from Kolkata.</p>
+      <div class="hero-actions">
+        <a class="start-now" href="../start/?v=indesign">Let's Connect <span>→</span></a>
+        <a class="hero-call" href="tel:+919830183828">Call +91 98301 83828</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-bar">
+    <span>20+ Years Experience</span><span>100+ Projects</span><span>9 Bigha Organic Farm</span><span>Multi-Industry Expertise</span>
+  </div>
+
+  <!-- Story Strip -->
+  <section class="story-strip">
+    <div class="story-strip-bg"></div>
+    <div class="story-text">
+      <h2 class="anim-target" style="transition-delay: 0.1s;">Real Work. Real Impact.</h2>
+      <p class="anim-target" style="transition-delay: 0.2s;">Corporate offices, retail spaces and residential interiors — designed and delivered end-to-end.</p>
+    </div>
+  </section>
+
+  <!-- Split Vision -->
+  <section class="split-vision">
+    <div class="split-image">
+      <img loading="lazy" decoding="async" alt="The InDesign" class="anim-target" src="https://images.unsplash.com/photo-1730130596425-197566414dc4?w=1600&amp;q=70&amp;auto=format&amp;fit=crop" style="transition-delay: 0.1s;"/>
+    </div>
+    <div class="split-content anim-target" style="transition-delay: 0.3s;">
+      <span class="split-label">Why Baradia</span>
+      <h2 class="split-title">Rooted in Tradition,<br/>Refined for Today</h2>
+      <p class="split-text">
+        We create environments that balance Vastu wisdom with contemporary aesthetics. Every material is chosen for longevity, every space designed for the soul.
+      </p>
+    </div>
+  </section>
+
+  <!-- Portfolio Showcase (Device Section) -->
+  <section class="portfolio-section">
+    <div class="portfolio-grid">
+      <div class="portfolio-content anim-target" style="transition-delay: 0.2s;">
+        <span class="portfolio-label">The Process</span>
+        <h2 class="portfolio-title">Your Vision,<br/>Visualized</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--muted); margin-bottom: 2rem;">
+          From concept sketches to photorealistic renders, we bring your space to life before a single brick is laid.
+        </p>
+        <ul class="portfolio-features">
+          <li>3D Visualization & VR Walkthroughs</li>
+          <li>Material & Texture Curation</li>
+          <li>Lighting & Spatial Psychology</li>
+          <li>Sustainable Material Selection</li>
+        </ul>
+      </div>
+      
+      <div class="device-showcase anim-target" style="transition-delay: 0.4s;">
+        <div class="tablet-mockup">
+          <img loading="lazy" decoding="async" alt="Interior Design" src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=70&amp;w=1600&amp;auto=format&amp;fit=crop"/>
+        </div>
+        <div class="material-sample">
+          <img loading="lazy" decoding="async" alt="Materials" src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=70&amp;w=800&amp;auto=format&amp;fit=crop"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Strip -->
+  <section class="gallery-strip">
+    <div class="gallery-item anim-target" style="transition-delay: 0.1s;">
+      <img loading="lazy" decoding="async" alt="Residential" src="https://images.unsplash.com/photo-1734937743443-a50fff0c0b40?w=800&amp;q=70&amp;auto=format&amp;fit=crop"/>
+      <div class="gallery-overlay"><span>Residential</span></div>
+    </div>
+    <div class="gallery-item anim-target" style="transition-delay: 0.2s;">
+      <img loading="lazy" decoding="async" alt="Commercial" src="https://images.unsplash.com/photo-1716703371653-ca74beaa7a4a?w=800&amp;q=70&amp;auto=format&amp;fit=crop"/>
+      <div class="gallery-overlay"><span>Commercial</span></div>
+    </div>
+    <div class="gallery-item anim-target" style="transition-delay: 0.3s;">
+      <img loading="lazy" decoding="async" alt="Hospitality" src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=70&amp;w=1000&amp;auto=format&amp;fit=crop"/>
+      <div class="gallery-overlay"><span>Hospitality</span></div>
+    </div>
+    <div class="gallery-item anim-target" style="transition-delay: 0.4s;">
+      <img loading="lazy" decoding="async" alt="Retail" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=70&amp;w=1000&amp;auto=format&amp;fit=crop"/>
+      <div class="gallery-overlay"><span>Retail</span></div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="services-section">
+    <div class="services-grid">
+      <div class="service-card anim-target" style="transition-delay: 0.1s;">
+        <div class="service-number">01</div>
+        <h3 class="service-title">Architecture</h3>
+        <p class="service-text">Structural poetry that harmonizes with landscape and lifestyle.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.2s;">
+        <div class="service-number">02</div>
+        <h3 class="service-title">Interiors</h3>
+        <p class="service-text">Spaces that balance beauty with the rhythm of daily life.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.3s;">
+        <div class="service-number">03</div>
+        <h3 class="service-title">Landscape</h3>
+        <p class="service-text">Outdoor environments that extend your living space naturally.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.4s;">
+        <div class="service-number">04</div>
+        <h3 class="service-title">Restoration</h3>
+        <p class="service-text">Honoring heritage while introducing modern comfort.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.5s;">
+        <div class="service-number">05</div>
+        <h3 class="service-title">Styling</h3>
+        <p class="service-text">Curated objects and textures that complete the narrative.</p>
+      </div>
+      
+      <div class="service-card anim-target" style="transition-delay: 0.6s;">
+        <div class="service-number">06</div>
+        <h3 class="service-title">Consulting</h3>
+        <p class="service-text">Expert guidance on Vastu, materials, and spatial flow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Timeline -->
+  <section class="process-section">
+    <div class="process-header anim-target" style="transition-delay: 0.1s;">
+      <h2 class="process-title">Simple Process</h2>
+    </div>
+
+    <div class="process-steps">
+      <div class="step anim-target" style="transition-delay: 0.2s;">
+        <div class="step-circle">1</div>
+        <h3 class="step-title">Connect</h3>
+        <p class="step-text">Tap Let's Connect or call us</p>
+      </div>
+      <div class="step anim-target" style="transition-delay: 0.3s;">
+        <div class="step-circle">2</div>
+        <h3 class="step-title">Understand</h3>
+        <p class="step-text">We study your requirement</p>
+      </div>
+      <div class="step anim-target" style="transition-delay: 0.4s;">
+        <div class="step-circle">3</div>
+        <h3 class="step-title">Strategy &amp; Proposal</h3>
+        <p class="step-text">Clear plan, scope and budget</p>
+      </div>
+      <div class="step anim-target" style="transition-delay: 0.5s;">
+        <div class="step-circle">4</div>
+        <h3 class="step-title">Execution &amp; Delivery</h3>
+        <p class="step-text">We deliver — you move in</p>
+      </div>
+    </div>
+
+    <div class="process-cta">
+      <a class="start-now" href="../start/?v=indesign">Let's Connect <span>→</span></a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-visual">
+    <div class="cta-content anim-target" style="transition-delay: 0.2s;">
+      <h2>Let’s Build Something<br/>Meaningful Together</h2>
+      <p>Your home, office or shop — designed right and delivered on time.</p>
+    </div>
+    <a class="cta-btn start-now" href="../start/?v=indesign">
+      Let's Connect <span>→</span>
+    </a>
+  </section>
+  <script>
+    document.getElementById('backButton').addEventListener('click', function (e) {
+      e.preventDefault();
+      if (document.referrer && document.referrer.indexOf(location.hostname) !== -1) history.back();
+      else location.href = '../index.html';
+    });
+  </script>
 </body>
 </html>

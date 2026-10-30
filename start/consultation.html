@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Choose Your Consultation | Baradia Group, Kolkata</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta name="description" content="Select between Free consultation (limited) or Priority consultation (paid, faster + detailed) for ₹999."/>
+  <link rel="icon" href="/images/favicon/favicon-32x32.png"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <script src="/assets/site.js"></script>
+
+  <style>
+    :root {
+      --red: #C2152F;
+      --red-hover: #a11126;
+      --black: #1a1a1a;
+      --bg: #f7f7f5;
+      --font-main: 'Arimo', Arial, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --muted: rgba(0,0,0,0.62);
+      --line: rgba(0,0,0,0.12);
+      --soft: #fbf3f4;
+      --green: #25D366;
+      --gold: #D4AF37;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--black);
+      font-family: var(--font-main);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .nav-bar {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 1.5rem; background: rgba(247,247,245,0.95);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+    }
+    .nav-logo { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.22em; }
+    .nav-back { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; }
+    .nav-back:hover { opacity: 1; }
+
+    .hero-strip {
+      background: linear-gradient(135deg, #1f1f1f 0%, #111 100%);
+      color: #fff; padding: 2.8rem 1.5rem 2.2rem; text-align: center;
+    }
+    .hero-inner { max-width: 680px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #ffb3bf; margin-bottom: 0.5rem; font-weight: 700;
+    }
+    h1 {
+      font-family: var(--font-serif); font-weight: 500;
+      font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 0.6rem;
+    }
+    .hero-sub { color: rgba(255,255,255,0.8); font-size: 0.98rem; }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 6rem; }
+
+    /* Summary Bar */
+    .lead-summary {
+      background: #fff; border: 1px solid var(--line); border-radius: 8px;
+      padding: 1rem 1.25rem; margin-bottom: 2rem; font-size: 0.9rem;
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem;
+      align-items: center;
+    }
+    .lead-summary span { color: var(--muted); }
+    .lead-summary strong { color: var(--black); }
+
+    /* Consultation Options Grid */
+    .options-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 680px) {
+      .options-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: #fff; border: 2px solid var(--line); border-radius: 12px;
+      padding: 1.8rem 1.5rem; display: flex; flex-direction: column;
+      justify-content: space-between; transition: all 0.25s ease;
+      position: relative;
+    }
+    .card:hover {
+      border-color: rgba(194,21,47,0.4);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+    .card.priority-card {
+      border-color: var(--red);
+      background: linear-gradient(180deg, #fff 0%, #fff7f8 100%);
+      box-shadow: 0 10px 30px rgba(194,21,47,0.08);
+    }
+
+    .badge {
+      display: inline-block; font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; font-weight: 700; padding: 4px 10px;
+      border-radius: 999px; margin-bottom: 1rem; width: fit-content;
+    }
+    .badge-std { background: #eee; color: #555; }
+    .badge-prio { background: var(--red); color: #fff; }
+
+    .card h2 {
+      font-family: var(--font-serif); font-size: 1.35rem; font-weight: 500;
+      margin-bottom: 0.5rem; line-height: 1.25;
+    }
+    .price-box {
+      font-size: 1.7rem; font-weight: 700; margin: 0.75rem 0 1.2rem;
+      font-family: var(--font-serif); color: var(--black);
+    }
+    .price-box.prio-price { color: var(--red); }
+    .price-box small { font-size: 0.8rem; font-family: var(--font-main); color: var(--muted); font-weight: 400; }
+
+    .card-list {
+      list-style: none; margin-bottom: 1.75rem; font-size: 0.9rem;
+      color: var(--muted); display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .card-list li {
+      display: flex; align-items: flex-start; gap: 8px; line-height: 1.4;
+    }
+    .card-list li::before {
+      content: '✓'; color: #2e7d32; font-weight: 700;
+    }
+    .priority-card .card-list li::before {
+      color: var(--red);
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 1rem 1.25rem; font-family: var(--font-main);
+      font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 700; border-radius: 999px; border: none; cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-outline {
+      background: transparent; color: var(--black); border: 2px solid var(--black);
+    }
+    .btn-outline:hover {
+      background: var(--black); color: #fff;
+    }
+    .btn-priority {
+      background: var(--red); color: #fff;
+    }
+    .btn-priority:hover {
+      background: var(--red-hover); transform: translateY(-2px);
+    }
+    .btn-wa {
+      background: var(--green); color: #fff;
+    }
+    .btn-wa:hover {
+      filter: brightness(0.95);
+    }
+
+    /* Modal / Expanded Payment Box */
+    .payment-modal {
+      display: none; background: #fff; border: 2px solid var(--red);
+      border-radius: 12px; padding: 2rem 1.8rem; margin-top: 1.5rem;
+      animation: fadeIn 0.3s ease;
+    }
+    .payment-modal.open { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    .upi-box {
+      background: var(--soft); border: 1px dashed var(--red); border-radius: 8px;
+      padding: 1.2rem; margin: 1.2rem 0; text-align: center;
+    }
+    .upi-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .upi-id {
+      font-size: 1.35rem; font-weight: 700; color: var(--red);
+      letter-spacing: 0.05em; margin: 0.4rem 0; word-break: break-all;
+    }
+    .copy-btn {
+      background: #fff; border: 1px solid var(--red); color: var(--red);
+      padding: 6px 16px; border-radius: 999px; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: 0.2s;
+    }
+    .copy-btn:hover { background: var(--red); color: #fff; }
+
+    .qr-wrap {
+      text-align: center; margin: 1.5rem 0;
+    }
+    .qr-wrap img {
+      max-width: 190px; border: 1px solid var(--line); border-radius: 8px; padding: 8px; background: #fff;
+    }
+
+    .instructions {
+      font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem;
+    }
+    .instructions ol { padding-left: 1.25rem; }
+    .instructions li { margin-bottom: 0.4rem; }
+
+    .direct-upi-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: #1a1a1a; color: #fff; padding: 0.85rem 1.2rem;
+      border-radius: 999px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 1rem; width: 100%;
+    }
+    .direct-upi-btn:hover { background: #333; }
+
+    .contact-footer {
+      margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+      text-align: center; font-size: 0.85rem; color: var(--muted); line-height: 1.8;
+    }
+    .contact-footer a { color: var(--black); font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="nav-bar">
+    <a class="nav-back" href="index.html">← Back to Form</a>
+    <a class="nav-logo" href="../index.html">BARADIA</a>
+  </div>
+
+  <header class="hero-strip">
+    <div class="hero-inner">
+      <p class="eyebrow">Form Submitted Successfully</p>
+      <h1>Choose Your Consultation</h1>
+      <p class="hero-sub">Your requirement has been recorded. Select how you would like our team to proceed:</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Lead Summary -->
+    <div class="lead-summary" id="leadSummary">
+      <div><span>Vertical:</span> <strong id="sumVertical">Loading...</strong></div>
+      <div><span>Name:</span> <strong id="sumName">-</strong></div>
+      <div><span>Phone:</span> <strong id="sumPhone">-</strong></div>
+      <div><span>Location:</span> <strong id="sumCity">-</strong></div>
+    </div>
+
+    <!-- The 2 Options -->
+    <div class="options-grid">
+      
+      <!-- Option 1: Free -->
+      <div class="card">
+        <div>
+          <span class="badge badge-std">Limited</span>
+          <h2>Free consultation (limited)</h2>
+          <div class="price-box">₹0 <small>Free</small></div>
+          <ul class="card-list">
+            <li>10-minute preliminary discovery call</li>
+            <li>General service overview & guidance</li>
+            <li>Standard queue response (2–3 working days)</li>
+            <li>WhatsApp chat follow-up</li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-outline" id="btnChooseFree">
+          Free consultation (limited) →
+        </button>
+      </div>
+
+      <!-- Option 2: Priority -->
+      <div class="card priority-card">
+        <div>
+          <span class="badge badge-prio">Recommended · Fast Track</span>
+          <h2>Priority consultation (paid, faster + detailed)</h2>
+          <div class="price-box prio-price">₹999 <small>one-time fee</small></div>
+          <ul class="card-list">
+            <li><strong>Detailed 30–45 min strategy session</strong></li>
+            <li><strong>Faster response (within 24 hours)</strong></li>
+            <li>In-depth layout, technical or farming direction</li>
+            <li>Budget clarity & customized scope breakdown</li>
+            <li>Direct discussion with senior team</li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-priority" id="btnChoosePriority">
+          Priority consultation (₹999) →
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Payment section for Priority Consultation -->
+    <div class="payment-modal" id="prioModal">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <h3 style="font-family:var(--font-serif); font-size:1.35rem; color:var(--red);">
+          Priority Consultation Payment (₹999)
+        </h3>
+        <span class="badge badge-prio">₹999</span>
+      </div>
+      <p style="color:var(--muted); font-size:0.92rem; margin-bottom:1rem;">
+        Complete your payment of <strong>₹999</strong> to activate your priority consultation slot.
+      </p>
+
+      <div class="upi-box">
+        <div class="upi-label">UPI ID for Payment</div>
+        <div class="upi-id" id="upiIdDisplay">sumitbaradia1@icici</div>
+        <button type="button" class="copy-btn" id="copyUpiBtn">Copy UPI ID</button>
+      </div>
+
+      <!-- Mobile Pay Button -->
+      <a class="direct-upi-btn" id="directUpiLink" href="upi://pay?pa=sumitbaradia1@icici&pn=Baradia%20Group&am=999&cu=INR&tn=Priority%20Consultation%20Fee">
+        Pay ₹999 using any UPI App (GPay / PhonePe / Paytm)
+      </a>
+
+      <!-- Desktop QR code -->
+      <div class="qr-wrap">
+        <p style="font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); margin-bottom:0.5rem;">
+          Scan QR with any UPI App
+        </p>
+        <img id="upiQr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Dsumitbaradia1%40icici%26pn%3DBaradia%2520Group%26am%3D999%26cu%3DINR%26tn%3DPriority%2520Consultation%2520Fee" alt="Baradia UPI QR Code"/>
+      </div>
+
+      <div class="instructions">
+        <strong>Next Steps:</strong>
+        <ol>
+          <li>Send ₹999 to <code>sumitbaradia1@icici</code> via GPay, PhonePe, Paytm, or BHIM.</li>
+          <li>Tap the button below to open WhatsApp with your enquiry details.</li>
+          <li>Share your payment screenshot in the chat to confirm your priority slot.</li>
+        </ol>
+      </div>
+
+      <button type="button" class="btn btn-wa" id="btnWaPriority">
+        Open WhatsApp & Share Details →
+      </button>
+    </div>
+
+    <!-- Free Consultation Confirmation Section -->
+    <div class="payment-modal" id="freeModal" style="border-color:#2e7d32;">
+      <h3 style="font-family:var(--font-serif); font-size:1.35rem; color:#2e7d32; margin-bottom:0.75rem;">
+        Free Consultation Selected
+      </h3>
+      <p style="color:var(--muted); font-size:0.92rem; margin-bottom:1.5rem; line-height:1.6;">
+        Tap below to open WhatsApp. Your requirement has already been typed — just hit <strong>Send</strong>.
+        Our team will schedule your free 10-minute discovery call within standard working hours.
+      </p>
+      <button type="button" class="btn btn-wa" id="btnWaFree">
+        Open WhatsApp & Send Requirement →
+      </button>
+    </div>
+
+    <div class="contact-footer">
+      Questions? Call <a href="tel:+919830183828">+91 98301 83828</a> ·
+      Email <a href="mailto:sumit@baradiagroup.com">sumit@baradiagroup.com</a><br/>
+      101/1 Tollygunge Road, Kolkata – 700026
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var CFG = window.BARADIA_CONFIG || {
+        WHATSAPP_NUMBER: '919830183828',
+        UPI_ID: 'sumitbaradia1@icici'
+      };
+
+      // Retrieve lead from sessionStorage, localStorage, or create fallback
+      var lead = null;
+      try {
+        var raw = sessionStorage.getItem('baradia_current_lead') || localStorage.getItem('baradia_current_lead');
+        if (raw) lead = JSON.parse(raw);
+      } catch (e) {}
+
+      if (!lead) {
+        // Look in query params
+        var params = new URLSearchParams(location.search);
+        if (params.get('name') || params.get('v')) {
+          lead = {
+            id: 'BG-' + Date.now().toString(36).toUpperCase(),
+            date: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+            vertical: params.get('v') || 'indesign',
+            verticalName: params.get('v') || 'General',
+            name: params.get('name') || 'Guest',
+            phone: params.get('phone') || '',
+            email: params.get('email') || '',
+            city: params.get('city') || '',
+            currentSituation: params.get('q1') || '',
+            goalExpectation: params.get('q2') || '',
+            scale: params.get('scale') || '',
+            budgetRange: params.get('budget') || '',
+            timeline: params.get('timeline') || '',
+            details: params.get('details') || ''
+          };
+        }
+      }
+
+      if (lead) {
+        document.getElementById('sumVertical').textContent = lead.verticalName || lead.vertical || 'General';
+        document.getElementById('sumName').textContent = lead.name || '-';
+        document.getElementById('sumPhone').textContent = lead.phone || '-';
+        document.getElementById('sumCity').textContent = lead.city || '-';
+      }
+
+      function buildWhatsAppMessage(isPriority) {
+        var l = lead || {};
+        var fee = CFG.CONSULTATION_FEE || '₹999';
+        var upi = CFG.UPI_ID || 'sumitbaradia1@icici';
+        var lines = [
+          'Hi Baradia Group! 😊 New website enquiry.',
+          '',
+          'Lead ID: ' + (l.id || ('BG-' + Math.random().toString(36).slice(2, 6).toUpperCase())),
+          'Date: ' + (l.date || new Date().toLocaleString('en-IN')),
+          'Source: Website',
+          'Vertical: ' + (l.verticalName || l.vertical || 'General'),
+          'Consultation: ' + (isPriority ? 'Priority consultation (paid, faster + detailed) (' + fee + ')' : 'Free consultation (limited)'),
+          '',
+          'Name: ' + (l.name || ''),
+          'Phone: ' + (l.phone || ''),
+          'Email: ' + (l.email || ''),
+          'Location: ' + (l.city || ''),
+          '',
+          '1️⃣ Current situation: ' + (l.currentSituation || 'N/A'),
+          '2️⃣ Goal / Expectation: ' + (l.goalExpectation || 'N/A'),
+          '3️⃣ Scale of requirement: ' + (l.scale || 'N/A'),
+          '4️⃣ Expected budget range: ' + (l.budgetRange || 'N/A'),
+          '5️⃣ Preferred timeline: ' + (l.timeline || 'N/A')
+        ];
+        if (l.details) {
+          lines.push('6️⃣ Specific details: ' + l.details);
+        }
+        lines.push('');
+        if (isPriority) {
+          lines.push('Payment Details:');
+          lines.push('• Consultation Fee: ' + fee);
+          lines.push('• UPI ID: ' + upi);
+          lines.push('• Status: Paid / Ready to share screenshot');
+          lines.push('');
+          lines.push('I am attaching my payment screenshot. Please schedule my priority call at the earliest.');
+        } else {
+          lines.push('Please schedule my free 10-minute consultation call.');
+        }
+        return lines.join('\n');
+      }
+
+      function openWhatsApp(isPriority) {
+        var text = buildWhatsAppMessage(isPriority);
+        var num = CFG.WHATSAPP_NUMBER || '919830183828';
+        var url = 'https://wa.me/' + num + '?text=' + encodeURIComponent(text);
+
+        // Update lead in storage and google sheet
+        if (lead) {
+          lead.consult = isPriority ? 'paid' : 'free';
+          lead.leadType = isPriority ? 'Priority Consultation (₹999)' : 'Free Consultation (limited)';
+          lead.priority = isPriority ? 'Priority (₹999)' : 'Free';
+          try {
+            sessionStorage.setItem('baradia_current_lead', JSON.stringify(lead));
+            localStorage.setItem('baradia_current_lead', JSON.stringify(lead));
+          } catch (e) {}
+
+          if (window.baradiaSendToGoogleSheet) {
+            window.baradiaSendToGoogleSheet(lead);
+          }
+        }
+
+        var w = window.open(url, '_blank');
+        if (!w) window.location.href = url;
+      }
+
+      // Buttons
+      var freeBtn = document.getElementById('btnChooseFree');
+      var prioBtn = document.getElementById('btnChoosePriority');
+      var prioModal = document.getElementById('prioModal');
+      var freeModal = document.getElementById('freeModal');
+
+      freeBtn.addEventListener('click', function () {
+        prioModal.classList.remove('open');
+        freeModal.classList.add('open');
+        freeModal.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      prioBtn.addEventListener('click', function () {
+        freeModal.classList.remove('open');
+        prioModal.classList.add('open');
+        prioModal.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      document.getElementById('btnWaFree').addEventListener('click', function () {
+        openWhatsApp(false);
+      });
+
+      document.getElementById('btnWaPriority').addEventListener('click', function () {
+        openWhatsApp(true);
+      });
+
+      // Copy UPI ID button
+      var copyBtn = document.getElementById('copyUpiBtn');
+      copyBtn.addEventListener('click', function () {
+        var upi = CFG.UPI_ID || 'sumitbaradia1@icici';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(upi).then(function () {
+            copyBtn.textContent = 'Copied! ✓';
+            setTimeout(function () { copyBtn.textContent = 'Copy UPI ID'; }, 2500);
+          });
+        } else {
+          var input = document.createElement('input');
+          input.value = upi;
+          document.body.appendChild(input);
+          input.select();
+          document.execCommand('copy');
+          document.body.removeChild(input);
+          copyBtn.textContent = 'Copied! ✓';
+          setTimeout(function () { copyBtn.textContent = 'Copy UPI ID'; }, 2500);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
